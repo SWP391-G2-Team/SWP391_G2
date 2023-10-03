@@ -1,0 +1,187 @@
+﻿#cart{
+    margin: 25px auto;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+}
+
+#cart-title{
+    line-height: 50px;
+    text-align: left;
+    padding: 0px 15px;
+    border-bottom:1px solid gainsboro;
+}
+
+
+#cart-content{
+    width: 100%;
+    padding: 10px 0px;
+}
+
+.cart-item{
+    margin-bottom: 30px;
+    border-bottom: 1px solid gainsboro;
+    padding-bottom: 20px;
+    display: 100%;
+}
+
+.cart-item-infor{
+    display: flex;
+}
+
+.cart-item-img{
+    width:13%;
+}
+
+.cart-item-img img{
+    width:100%;
+}
+
+.cart-item-name{
+    width: 60%;
+    font-weight: bold;
+}
+
+.cart-item-price{
+    font-weight: bold;
+    color: red;
+    width: 13%;
+}
+
+.cart-item-button{
+    width: 10%;
+}
+
+.cart-item-button a{
+    background-color: orangered;
+    padding:3px 7px;
+    border-radius: 2px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.cart-item-function{
+    text-align: left;
+    width: 100%;
+    padding-left: 4%;
+    font-weight: bold;
+}
+
+.cart-item-function a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    color:red;
+}
+.cart-item-function a:hover{
+    color: green;
+}
+
+.cart-item-function input[type="text"]{
+    width: 50px;
+}
+
+#cart-order{
+    text-align: right;
+}
+
+#cart-order input{
+    width: 22%;
+    margin-right: 5%;
+    font-weight: bold;
+}
+
+#cart-summary{
+    display: flex;
+    margin-top: -20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 1px solid gainsboro;
+}
+
+#cart-summary-content{
+    width:100%;
+    text-align: right;
+    padding-right: 5%;
+    padding-bottom: 20px;
+}
+
+#customer-info{
+    width: 92%;
+    margin: 10px auto;
+}
+
+#customer-info-content{
+    display: inline-flexbox;
+}
+#customer-info h3{
+    width: 100%;
+    line-height: 50px;
+}
+/*#customer-info-detail{
+    display: flex;
+}
+#customer-info-left{
+    width: 50%;
+}
+
+#customer-info-right{
+    width: 50%;
+}
+
+#customer-info-detail input[type="text"]{
+    line-height: 30px;
+    margin-bottom:  10px;
+    width: 96%;
+}
+*/
+#customer-info-detail {
+    display: flex;
+    align-items: flex-start;
+}
+
+#customer-info-left {
+    width: 50%;
+}
+
+#customer-info-right {
+    width: 50%;
+}
+
+#customer-info-detail input[type="text"],
+#customer-info-detail select {
+    width: 90%;
+    margin-bottom: 10px;
+}
+#customer-info-payment input[type="radio"]{
+    border-color: #ee2e24;
+}
+#form-row > label span {
+    display: inline-block;
+    box-sizing: border-box;
+    color: #5F5F5F;
+    width: 50px;
+    text-align: right;
+    vertical-align: top;
+}
+#form-row {
+    text-align: left;
+}
+@media (max-width: 600px) {
+    #form-row {
+        max-width: 300px;
+        margin: 25px auto;
+        text-align: left;
+    }
+    #form-row > label span {
+            display: block;
+            text-align: left;
+            padding: 0 0 15px;
+    }
+}
+.required-field::after{
+    content: '*';
+    color: red;
+}

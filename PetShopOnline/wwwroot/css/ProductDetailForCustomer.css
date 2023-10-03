@@ -1,0 +1,91 @@
+﻿#product {
+    background-color: #ffffff;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+body {
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+}
+#content-detail {
+    width: 100%;
+}
+#product-detail {
+    display: flex;
+    margin-top: 20px;
+}
+#product-detail-left {
+    width: 40%;
+}
+#product-name {
+    padding: 15px;
+}
+#product-name h2{
+    line-height: 15px;
+    border-bottom: 1px solid gainsboro;
+    width: 100%;
+    font-size: 30px;
+    padding-bottom: 15px;
+}
+#product-img img {
+    width: 100%;
+}
+#product-img-items{
+    text-align: center;
+    margin-top: 20px;
+    display: inline-flex;
+    width: 100%;
+}
+
+#product-img-items div{
+    border: 1px solid gainsboro;
+    width: 20%;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 3px 0px;
+}
+    #product-img-items div:hover {
+        border: 1px solid red;
+    }
+
+    #product-img-items img {
+        width: 80%;
+    }
+
+#product-detail-right {
+    width: 60%;
+}
+
+#product-detail-right-content {
+    width: 100%;
+}
+#product-price {
+    color: red;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: 100%;
+}
+#product-status {
+    color: green;
+    font-weight: bold;
+}
+
+#product-detail-right-button {
+    margin-top: 30px;
+}
+
+#product-detail-buttons {
+    margin-top: 20px;
+    display: flex;
+}
+
+#product-detail-button {
+    width: 100%;
+}
+
+    #product-detail-button input[type="button"] {
+        width: 49%;
+        font-weight: bold;
+    }

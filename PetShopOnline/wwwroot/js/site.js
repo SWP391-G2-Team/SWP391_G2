@@ -1,4 +1,9 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿document.getElementById("login-btn").addEventListener("click", function () {
+    // Thực hiện các hành động khi nút Đăng nhập được nhấn
+    // Ví dụ: mở hộp thoại đăng nhập
+});
 
-// Write your JavaScript code.
+document.getElementById("register-btn").addEventListener("click", function () {
+    // Thực hiện các hành động khi nút Đăng ký được nhấn
+    // Ví dụ: mở hộp thoại đăng ký
+});

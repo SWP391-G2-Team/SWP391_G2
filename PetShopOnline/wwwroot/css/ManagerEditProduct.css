@@ -1,0 +1,14 @@
+﻿body {
+}
+#content-right {
+    width: 95%;
+    position: relative;
+}
+.content-main{
+    margin-left:10%;
+    padding-bottom: 10px;
+}
+textarea {
+    width: 90%;
+    height: auto;
+}
