@@ -10,7 +10,7 @@
 *.userosscache
 *.sln.docstates
 *.sln
-.appsettings.json
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -477,4 +477,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-PetShopOnline/appsettings.json
+~/PetShopOnline/appsettings.json
