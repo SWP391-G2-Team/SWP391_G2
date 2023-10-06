@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace PetShopOnline.Controllers.Account
 {
-    public class SingnInModel : PageModel
+    public class LoginController : PageModel
     {
         private readonly DTB_PETSHOPContext projectContext;
 
-        public SingnInModel(DTB_PETSHOPContext projectContext)
+        public LoginController(DTB_PETSHOPContext projectContext)
         {
             this.projectContext = projectContext;
         }
