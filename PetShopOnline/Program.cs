@@ -12,7 +12,7 @@ builder.Services.AddSignalR();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/account/singnin";
+        options.LoginPath = "/Authentication/Login_Page";
         options.AccessDeniedPath = "/error";
     });
 
