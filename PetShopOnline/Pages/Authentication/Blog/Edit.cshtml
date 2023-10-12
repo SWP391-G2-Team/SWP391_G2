@@ -1,0 +1,177 @@
+﻿@page
+@model PetShop_Project_SWP391.Pages.Manager.Blog.EditModel
+
+@section Head {
+    @*<link href="~/js/addBlog.js" rel="stylesheet" type="text/css" />
+    <link href="node_modules/froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />*@
+    
+    <script>
+        tinymce.init({
+            selector: 'textarea#tiny',
+            plugins: [
+                'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export',
+                'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+                'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+            ],
+            toolbar: 'undo redo | a11ycheck casechange blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify |' +
+                'bullist numlist checklist outdent indent | removeformat | code table help'
+        });
+
+        ////// chang ảnh 
+            // Function to handle the file input change event
+        function handleImageFileChange(event) {
+            const fileInput = event.target;
+            const imagePreview = fileInput.previousElementSibling;
+            const file = fileInput.files[0];
+
+            // Check if a file is selected
+            if (file) {
+                // Create a FileReader to read the selected image file
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // Set the image source to the data URL of the selected image
+                    imagePreview.src = e.target.result;
+                };
+
+                // Read the selected image file as a data URL
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Add an event listener to the file input
+        document.addEventListener('DOMContentLoaded', function () {
+            const fileInput = document.getElementById('imageFile');
+            fileInput.addEventListener('change', handleImageFileChange);
+        });
+    </script>
+}
+@section EditBlog{
+    
+<!DOCTYPE html>
+<html>
+<script src="~/js/addBlog.js"></script>
+<script src="~/js/addBlog.js"></script>
+<link href="node_modules/froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="node_modules/froala-editor/js/froala_editor.pkgd.min.js"></script>
+<body>
+<div>
+
+     <div class="container mt-3">
+    <div class="card p-3 text-center">
+        <h1 class="tieude-text">Chỉnh Sửa Blog</h1>
+        <form method="post" enctype="multipart/form-data">  
+
+            <div class="col-md-12">
+                <div class="inputs">
+                    <label for="pageTitle" class="form-label">Tiêu Đề</label>
+                    <input type="text"  class="form-control" id="pageTitle" asp-for="BlogDetail.PageTitle">
+                </div>
+            </div>
+           @* <div class="col-md-12">
+                <div class="inputs"> 
+                    <label for="imageFile" class="form-label">Ảnh Tiêu đề </label>
+                    <img src="@Model.BlogDetail.FeaturedImageUrl" height="100px" width="100px" style="float: left;" ></img>
+                    <input type="file" name="imageFile" class="form-control"  id="imageFile"/>
+                   
+                </div>
+            </div>*@
+             <div class="col-md-12">
+                    <div class="inputs">
+                        <label for="imageFile" class="form-label">Ảnh Tiêu đề</label>
+                        <img src="@Model.BlogDetail.FeaturedImageUrl" height="200px" width="200px" style="float: left;" id="imagePreview">
+                        </img>
+                        <input type="file" name="imageFile" class="form-control" id="imageFile">
+                    </div>
+             </div>
+
+            <div class="col-md-12">
+                <div class="inputs"> 
+                    <label for="heading" class="form-label">Tiêu đề bài viết</label>
+                    <input type="text"  class="form-control" id="heading" asp-for="BlogDetail.Heading">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="inputs"> 
+                    <label for="shortDescription" class="form-label">Mô tả </label>
+                    <input type="text"  class="form-control" id="shortDescription" asp-for="BlogDetail.ShortDescription">
+                 </div>
+            </div>
+            <div class="col-md-12">
+                <div class="inputs">
+                    <label for="publishedDate" class="form-label">Ngày đăng</label>
+                    <input type="date"  class="form-control" id="publishedDate" asp-for="BlogDetail.PublishedDate" >
+                 </div>
+            </div>
+            <div class="col-md-12">
+                <div class="inputs"> 
+                    <label for="content" class="form-label">Nội dung</label>
+                    <textarea rows="20" class="form-control"  id="tiny" asp-for="BlogDetail.Content"></textarea>
+                </div>
+            </div>
+       
+         <div class="row">
+        </div>
+        <div class="mt-3 gap-2 d-flex justify-content-end" > 
+           <a href="~/Manager/Blog/List"class="px-3 btn btn-sm btn-outline-primary"> Cancel </a>
+            <input  class="px-3 btn btn-sm btn-primary" type="submit" value="Save"/>
+        </div>
+     
+    </form>
+</div>
+</div>
+</body>
+<style>
+    body{
+        background-color:#ffff
+    }
+    .card{
+        border:none
+    }
+   
+    .row{
+        margin-top:30px;
+    }
+    .user-details span{text-align:left}
+    .inputs label{
+        display:flex;
+        margin-left:3px;font-weight:500;
+        font-size:13px;
+        margin-bottom:4px
+    }
+    .inputs input{
+        font-size:14px;
+        height:40px;
+        border:2px solid #ced4da
+    }
+    .inputs input:focus{
+        box-shadow:none;
+        border:2px solid blue
+    }
+    .about-inputs label{
+        display:flex;
+        margin-left:3px;
+        font-weight:500;
+        font-size:13px;
+        margin-bottom:4px
+    }
+    .about-inputs textarea{
+        font-size:14px;
+        height:100px;
+        border:2px solid #ced4da;
+        resize:none
+    }
+    .tieude-text{
+        background: linear-gradient(to right,#40e0d0, #ff8c00, #ff0080);
+       -webkit-background-clip: text;
+       -webkit-text-fill-color: transparent;
+       font-width:50px
+    }
+
+
+    .about-inputs textarea:focus{box-shadow:none}
+    .btn{font-weight:600}
+    .btn:focus{box-shadow:none}
+</style>
+</html>
+}

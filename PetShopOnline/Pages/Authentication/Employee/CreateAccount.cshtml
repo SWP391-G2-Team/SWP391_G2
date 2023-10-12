@@ -1,0 +1,61 @@
+﻿@page
+@model PetShop_Project_SWP391.Pages.Manager.Employee.CreateAccountModel
+@{
+}
+
+<div id="form">
+    <div id="form-content">
+        <div class="msg-error" style="text-align:left">
+            @ViewData["msg"]
+        </div>
+        <form method="post">
+            <input asp-for="Employee.EmployeeId" value="1" type="hidden" />
+
+            <label>Họ<span style="color: antiquewhite;">*</span></label><br />
+            <input asp-for="Employee.FirstName" /><br />
+            <span class="msg-error"></span><br />
+
+            <label>Tên<span style="color: antiquewhite;">*</span></label><br />
+            <input asp-for="Employee.LastName" /><br />
+            <span class="msg-error"></span><br />
+
+            <label>Email<span style="color: red;">*</span></label><br />
+            <input id="email" asp-for="Account.Email" oninput="checkEmailFormat()" /><br />
+            <span id="emailError" class="msg-error" asp-validation-for="Account.Email"></span><br />
+
+            <label>Mật khẩu<span style="color: red;">*</span></label><br />
+            <input id="password" asp-for="NewPassword" type="password" /><br />
+            <span class="msg-error" asp-validation-for="NewPassword"></span><br />
+
+            <label>Nhập lại mật khẩu<span style="color: red;">*</span></label><br />
+            <input id="confirmPassword" type="password" oninput="checkPasswordMatch()" asp-for="ConfirmPassword" /><br />
+            <span id="passwordError" class="msg-error"></span><br />
+
+            <label>Thông tin liên lạc<span style="color: antiquewhite;">*</span></label><br />
+            <input asp-for="Employee.Title" /><br />
+            <span class="msg-error" asp-validation-for="Employee.Title"></span><br />
+
+            <label>Ngày Sinh<span style="color: antiquewhite;">*</span></label><br />
+            <input asp-for="Employee.BirthDate" /><br />
+            <span class="msg-error" asp-validation-for="Employee.BirthDate"></span><br />
+
+            <label>Địa chỉ<span style="color: antiquewhite;">*</span></label><br />
+            <input asp-for="Employee.Address" /><br />
+            <span class="msg-error" asp-validation-for="Employee.Address"></span><br />
+
+            <div class="msg-error" style="text-align:left;margin-top:5px">
+                @ViewData["msgEmpty"]
+                @ViewData["msgEmail"]
+                @ViewData["msgPassword"]
+            </div>
+            <div style="text-align:left;color:green">
+                @ViewData["msgSuccess"]
+            </div>
+
+            <div></div>
+            <input type="submit" value="Đăng Ký" style="margin-bottom: 30px;" />
+        </form>
+    </div>
+</div>
+<link href="~/css/signupemployee.css" rel="stylesheet" />
+<script src="~/js/signup.js"></script>
