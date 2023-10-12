@@ -1,0 +1,54 @@
+﻿@page
+@model PetShop_Project_SWP391.Pages.Manager.Shippers.DetailModel
+@{
+    ViewData["Title"] = "Detail";
+}
+<link href="~/css/managerShipperdetail.css" rel="stylesheet" />
+    <div class="manager-Shipper-detail" style="margin-left : 10%; margin-right : 10%">
+    <h1 style="text-align:center">Shipper Detail</h1>
+    <div>
+        <hr />
+        <dl class="row" style="padding-left : 10%">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Shipper.Name)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model=>model.Shipper.Name)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Shipper.Phone)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model=>model.Shipper.Phone)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Shipper.Address)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model=>model.Shipper.Address)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Shipper.District)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model=>model.Shipper.District)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Shipper.Wards)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model=>model.Shipper.Wards)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Shipper.Province)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model=>model.Shipper.Province)
+            </dd>
+            
+        </dl>
+    </div>
+    <div style="text-align:center">
+        <a asp-page="./Index">Back to List</a>
+    </div>
+</div>
