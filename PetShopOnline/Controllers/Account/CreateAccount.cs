@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.DotNet.Scaffolding.Shared.ProjectModel;
+using Microsoft.EntityFrameworkCore;
 using PetShopOnline.Models;
-using System.Net.Mail;
 using System.Net;
-using System.Text.RegularExpressions;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace PetShopOnline.Controllers.Account
 {
@@ -22,6 +22,7 @@ namespace PetShopOnline.Controllers.Account
 
             [BindProperty]
             public Models.Customer Customer { get; set; }
+
             [BindProperty]
             public Models.Account Account { get; set; }
 
@@ -96,7 +97,6 @@ namespace PetShopOnline.Controllers.Account
                             Phone = Customer.Phone,
                             CreateDate = DateTime.Now,
                         };
-
 
                         var newAcc = new Models.Account()
                         {
