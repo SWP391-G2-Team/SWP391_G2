@@ -1,0 +1,201 @@
+﻿
+@using System.Text.Json;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Freshcery | Groceries Organic Store</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/sb-bistro/sb-bistro.css" rel="stylesheet" type="text/css">
+    <link href="/assets/fonts/font-awesome/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" media="all" href="/assets/packages/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/assets/packages/o2system-ui/o2system-ui.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/assets/packages/owl-carousel/owl-carousel.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/assets/packages/cloudzoom/cloudzoom.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/assets/packages/thumbelina/thumbelina.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/assets/packages/bootstrap-touchspin/bootstrap-touchspin.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/assets/css/theme.css">
+
+</head>
+<body>
+    <div class="page-header">
+        <!--=============== Navbar ===============-->
+        <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-transparent" id="page-navigation">
+            <div class="container">
+                <!-- Navbar Brand -->
+                <a href="/home/index" class="navbar-brand">
+                    <img src="/assets/img/logo/logo.webp" alt="">
+                </a>
+
+                <!-- Toggle Button -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarcollapse">
+                    <!-- Navbar Menu -->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="/NewFolder/List" class="nav-link">Sản Phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/GalleryPic/Gallery" class="nav-link">Bộ Sưu Tập</a>
+                        </li>
+                        @*<li class="nav-item">
+                        <a href="#" class="nav-link">Giới thiệu</a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a href="~/Home/Blogs/BlogList" class="nav-link">Blog</a>
+                        </li>
+                        @if (Context.Session.GetString("PetSession") == null)
+                        {
+                            <li class="nav-item">
+                                <a href="/Account/SignUp" class="nav-link">Đăng ký</a>
+                            </li>
+                            <li class="nav-item"><a href="/Account/SingnIn" class="nav-link">Đăng nhập</a></li>
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a href="/Customers/Profile" class="nav-link">Thông Tin</a></li>
+                            <li class="nav-item"><a href="/Account/Logout" class="nav-link">Đăng xuất</a></li>
+                        }
+
+
+                        @* <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="avatar-header"><img src="assets/img/logo/avatar.jpg"></div> John Doe
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="transaction.html">Transactions History</a>
+                        <a class="dropdown-item" href="setting.html">Settings</a>
+                        </div>
+                        </li>*@
+                        <li class="nav-item dropdown">
+                            <a href="javascript:void(0)" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-shopping-basket"></i> <span class="badge badge-primary">
+                                    @{
+                                        string? cart = Context.Session.GetString("CartSession");
+                                        if (cart is not null)
+                                        {
+                                            var carts = JsonSerializer.Deserialize<List<PetShopOnline.Models.Cart>>(cart);
+                                            int numOfItem = carts.Count;
+                                            if (numOfItem >= 0)
+                                            {
+                                                @numOfItem
+                                            }
+                                        }
+                                    }
+                                </span>
+                            </a>
+                            <div class="dropdown-menu shopping-cart">
+                                <ul>
+                                    <li>
+
+                                        <div class="drop-title">Giỏ Hàng Của Bạn</div>
+
+                                    </li>
+                                    <li class="d-flex justify-content-between pl-3 pr-3 pt-3">
+                                        <a href="~/Product/Cart" class="btn btn-secondary">View Cart</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+    <div id="content">
+        @RenderBody()
+        <div>
+            @RenderSection("gallery", required: false)
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Giới thiệu</h5>
+                    <p>
+                        Trang web về thú cưng là một nơi tuyệt vời để tìm các sản phẩm và dịch vụ mà các thành viên trong gia đình là mèo, chó hoặc các vật nuôi khác cần. Với các sản phẩm đa dạng từ thức ăn, đồ chơi, phụ kiện và cả dịch vụ chăm sóc sức khỏe, trang web này mang đến cho khách hàng rất nhiều lựa chọn để chăm sóc thú cưng yêu quý của mình.
+
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Links</h5>
+                    <ul>
+                        <li>
+                            <a href="about.html">Giới thiệu</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">Liên hệ</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">Cách thức hoạt động</a>
+                        </li>
+                        <li>
+                            <a href="terms.html">Điều khoản</a>
+                        </li>
+                        <li>
+                            <a href="privacy.html">Chính sách bảo mật</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Liên Hệ</h5>
+                    <ul>
+                        <li>
+                            <a href="tel:+098121312"><i class="fa fa-phone"></i> 098121312</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-envelope"></i> Petshopswp391@email.com</a>
+                        </li>
+                    </ul>
+
+                    <h5>Follow Chúng Tôi</h5>
+                    <ul class="social">
+                        <li>
+                            <a href="javascript:void(0)" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Get Our App</h5>
+                    <ul class="mb-0">
+                        <li class="download-app">
+                            <a href="#"><img src="/assets/img/playstore.png"></a>
+                        </li>
+                        <li style="height: 200px">
+                            <div class="mockup">
+                                <img src="/assets/img/petshop_app.jpg">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2018 Freshcery | Groceries Organic Store. All rights reserved.</p>
+    </footer>
+
+    <script type="text/javascript" src="/assets/js/jquery.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery-migrate.js"></script>
+    <script type="text/javascript" src="/assets/packages/bootstrap/libraries/popper.js"></script>
+    <script type="text/javascript" src="/assets/packages/bootstrap/bootstrap.js"></script>
+    <script type="text/javascript" src="/assets/packages/o2system-ui/o2system-ui.js"></script>
+    <script type="text/javascript" src="/assets/packages/owl-carousel/owl-carousel.js"></script>
+    <script type="text/javascript" src="/assets/packages/cloudzoom/cloudzoom.js"></script>
+    <script type="text/javascript" src="/assets/packages/thumbelina/thumbelina.js"></script>
+    <script type="text/javascript" src="/assets/packages/bootstrap-touchspin/bootstrap-touchspin.js"></script>
+    <script type="text/javascript" src="/assets/js/theme.js"></script>
+</body>
+</html>
