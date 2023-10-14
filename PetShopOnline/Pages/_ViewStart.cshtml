@@ -1,3 +1,25 @@
 ﻿@{
-    Layout = "_Layout";
+    var routeUrl = ViewContext.RouteData.Values["Page"].ToString();
+    var pages = new List<string> { "Manager" };
+    var pagesShipper = new List<string> { "Shipper" };
+    if (pages.Any(routeUrl.Contains))
+    {
+        Layout = Context.User.Identity.IsAuthenticated ? "_LayoutManager" : "_LayoutSignIn";
+        if (Context.User.Identity.IsAuthenticated && !User.IsInRole("1"))
+        {
+            Layout = "/Pages/Shared/HomePage/_LayoutHome.cshtml";
+        }
+    }
+    else if (pagesShipper.Any(routeUrl.Contains))
+    {
+        Layout = Context.User.Identity.IsAuthenticated ? "_LayoutShipper" : "_LayoutSignIn";
+        if (Context.User.Identity.IsAuthenticated && !User.IsInRole("3"))
+        {
+            Layout = "/Pages/Shared/HomePage/_LayoutHome.cshtml";
+        }
+    }
+    else
+    {
+        Layout = "/Pages/Shared/HomePage/_LayoutHome.cshtml";
+    }
 }

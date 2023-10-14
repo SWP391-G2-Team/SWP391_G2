@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.DotNet.Scaffolding.Shared.ProjectModel;
 using PetShopOnline.Models;
 
 
