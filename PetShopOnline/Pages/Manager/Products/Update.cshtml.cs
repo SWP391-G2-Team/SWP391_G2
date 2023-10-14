@@ -26,7 +26,7 @@ namespace PetShopOnline.Pages.Manager.Products
         public Models.Employee Employee { get; set; }
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (HttpContext.Session.GetString("PetSession") == null) return RedirectToPage("/account/singnin");
+            if (HttpContext.Session.GetString("PetSession") == null) return RedirectToPage("/Account/SignIn");
 
             Account = JsonSerializer.Deserialize<@Models.Account>(HttpContext.Session.GetString("PetSession"));
             //Customer = dBContext.Customers.FirstOrDefault(c => c.CustomerId == Account.CustomerId);
