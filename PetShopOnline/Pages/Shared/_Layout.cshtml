@@ -3,49 +3,239 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - PetShopOnline</title>
+    <title>@ViewData["Title"] - PetShop_Project_SWP391</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/PetShopOnline.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">PetShopOnline</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <link rel="stylesheet" href="~/PetShop_Project_SWP391.styles.css" asp-append-version="true" />
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    @RenderSection("Head", required: false)
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - PetShopOnline - <a asp-area="" asp-page="/Privacy">Privacy</a>
+
+    <meta charset="UTF-8">
+    <title> Home </title>
+
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <div class="sidebar close">
+        <div class="logo-details">
+            <i class='bx bx-home-alt'></i>
+            <span class="logo_name">PetShop</span>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="link_name">Thống kê bán hàng</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">User</a></li>
+                    <li><a href="~/Manager/Blog/List">Blog</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class='bx bx-body'></i>
+                        <span class="link_name">Tài khoản</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Tài khoản</a></li>
+
+                    <li><a href="#">Thông tin người dùng</a></li>
+                    <li><a href="">Đổi mật khẩu</a></li>
+
+                    <li><a href="~/Manager/Profile/Index">Thông tin người dùng</a></li>
+
+                    <li><a href="account/changepassword">Đổi mật khẩu</a></li>
+
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class='bx bx-package'></i>
+                        <span class="link_name">Sản phẩm</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Sản phẩm</a></li>
+                    <li><a href="~/Manager/Products/Index">Danh sách sản phẩm</a></li>
+                    <li><a href="#">Chi tiết sản phẩm</a></li>
+
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class='bx bx-poll'></i>
+                        <span class="link_name">Danh sách</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu blank">
+
+                    <li><a class="link_name" href="~/Manager/Shippers/index">Danh sách Shipper</a></li>
+                    <li><a class="link_name" href="Manager/StatisticSale">Thống kê bán hàng</a></li>
+                    <li><a class="link_name" href="~/Manager/CustomerList/Index">Danh sách khách hàng</a></li>
+
+                </ul>
+            </li>
+
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class='bx bx-cart'></i>
+                        <span class="link_name">Orders</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Orders</a></li>
+                    <li><a href="/Manager/TableOrderList/OrderList">Danh sách orders</a></li>
+                    <li><a href="#">Chi tiết order</a></li>
+
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-briefcase'></i>
+                    <span class="link_name">Tài khoản nhân viên</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="account/signupemployee">Tài khoản nhân viên</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="btn-logout">
+                    <a style="text-decoration: none;" href="~/Account/Logout">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="link_name">Đăng xuất</span>
+                        <ul class="sub-menu blank">
+                            <li>Đăng xuất</li>
+                            @RenderSection("Logout", required: false)
+                        </ul>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <div class="home-content">
+            <i class='bx bx-menu'></i>
+            <span class="text">Home</span>
+
+        </div>
+        <div>
+            @RenderSection("proflie",required:false)
+        </div>
+        <div>
+            @RenderSection("EditProflie",required:false)
+        </div>
+        <div>
+            @RenderSection("customer",required:false)
+        </div>
+        <div>
+            @RenderSection("manager_product_list", required:false)
+        </div>
+        <div>
+            @RenderSection("manager_product_detail", required:false)
+        </div>
+        <div>
+            @RenderSection("manager_update_product",required:false)
+        </div>
+        <div class="Order-table">
+            @RenderSection("OrderList",required:false)
+        </div>
+        <div class="Order-Detail">
+            @RenderSection("OrderDetail",required:false)
+        </div>
+        <div class="Order-Detail">
+            @RenderSection("manager_edit_order",required:false)
+        </div>
+        <div>
+            @RenderSection("statisticsale", required: false)
+        </div>
+        <div>
+            @RenderSection("List", required: false)
+        </div>
+        <div>
+            @RenderSection("EditBlog", required: false)
+        </div>
+        <div>
+            @RenderSection("gallery", required: false)
+        </div>
+        <div>
+            @RenderSection("Delete", required: false)
+        </div>
+        <div>
+            @RenderSection("AddBlog", required: false)
+        </div>
+
+        <div>
+            @RenderSection("manager_shipper_list", required:false)
+        </div>
+        <div>
+            @RenderSection("ListCustomer", required:false)
+        </div>
+    </section>
+    @if (!Context.User.Identity.IsAuthenticated)
+    {
+        <script>window.location.href = '/account/singnin';</script>
+    }
+    else
+    {
+        <div>
+            @RenderBody()
+        </div>
+    }
+    <script>
+        let arrow = document.querySelectorAll(".arrow");
+        for (var i = 0; i < arrow.length; i++) {
+            arrow[i].addEventListener("click", (e) => {
+                let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+                arrowParent.classList.toggle("showMenu");
+            });
+        }
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-menu");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        });
+    </script>
+
+
+    <footer class="text-center">
+        <div class="mb-2">
+            <div class="container">
+                &copy; 2023 - PetShop_Project_SWP391 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            </div>
+
         </div>
     </footer>
+    </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- page-content" -->
+    </div>
 
-    @await RenderSectionAsync("Scripts", required: false)
+    <!-- Javascript -->
+    <script src="/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="/assets/js/jquery-migrate-3.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/assets/js/jquery.backstretch.min.js"></script>
+    <script src="/assets/js/wow.min.js"></script>
+    <script src="/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/assets/js/scripts.js"></script>
+    <script src="~/js/site.js"></script>
 </body>
 </html>

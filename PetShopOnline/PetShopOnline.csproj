@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Content Remove="Controllers\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <None Remove="Controllers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.8">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -23,7 +30,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Manager\CustomerList\" />
+    <Folder Include="Pages\GalleryPic\" />
+    <Folder Include="Pages\Manager\" />
+    <Folder Include="Pages\Shipper\" />
+    <Folder Include="Pages\ListProducts\" />
+    <Folder Include="Pages\Product\" />
   </ItemGroup>
 
 </Project>
