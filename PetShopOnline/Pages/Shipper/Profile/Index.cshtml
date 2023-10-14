@@ -1,0 +1,98 @@
+﻿@page
+@model PetShop_Project_SWP391.Pages.Shipper.Profile.IndexModel
+@{
+}
+<style>
+    #content-left {
+        float: left;
+        width: 30%;
+        margin-right: 30px;
+    }
+
+    #content-right {
+        float: left;
+        width: 65%;
+    }
+
+    h3 {
+        font-weight: normal;
+        margin-top: 0;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    .path {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .content-main {
+        background-color: #f7f7f7;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    #profile-content {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .profile-content-col {
+        flex: 1;
+    }
+
+        .profile-content-col div {
+            margin-bottom: 10px;
+        }
+
+        .profile-content-col a {
+            text-decoration: none;
+        }
+
+        .profile-content-col input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .profile-content-col input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+</style>
+<header>
+    <h1>Welcome, @Model.Shipper.Name</h1>
+</header>
+    <div class="path">Thông tin người dùng</b></div>
+    <div class="content-main">
+        <div id="profile-content">
+            <div class="profile-content-col">
+                <div>Tên: <br />@Model.Shipper.Name</div>
+                <div>
+                    <a href="~/Shipper/Profile/EditProfileShipper">
+                    <input type="submit" value="Edit info" /></a>
+                </div>
+            </div>
+            <div class="profile-content-col">
+                <div>Tỉnh: @Model.Shipper.Province</div>
+                <div>Huyện/Quận: @Model.Shipper.District</div>
+                <div>Xã/Thị trấn: @Model.Shipper.Wards</div>
+            </div>
+            <div class="profile-content-col">
+                <div>
+                    Địa chỉ: @Model.Shipper.Address
+                </div>
+            </div>
+            <div class="profile-content-col">
+                 <div>Số điênh thoại: @Model.Shipper.Phone</div>
+            </div>
+            <div class="profile-content-col">
+                <div>Email: @Model.Account.Email</div>
+            </div>
+        </div>
+    </div>
+</div>
