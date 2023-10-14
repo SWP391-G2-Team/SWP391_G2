@@ -2,16 +2,16 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PetShop_Project_SWP391.Models;
+using PetShopOnline.Models;
 using System.Text.Json;
 
-namespace PetShop_Project_SWP391.Pages.Shipper.Profile
+namespace PetShopOnline.Pages.Shipper.Profile
 {
     [Authorize(Roles = "3")]
     public class IndexModel : PageModel
     {
-        private readonly ProjectContext dBContext;
-        public IndexModel(ProjectContext dBContext)
+        private readonly DTB_PETSHOPContext dBContext;
+        public IndexModel(DTB_PETSHOPContext dBContext)
         {
             this.dBContext = dBContext;
         }

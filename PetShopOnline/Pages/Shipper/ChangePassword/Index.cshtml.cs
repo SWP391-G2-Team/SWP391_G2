@@ -2,19 +2,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PetShop_Project_SWP391.Models;
+using PetShopOnline.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 
-namespace PetShop_Project_SWP391.Pages.Shipper.ChangePassword
+namespace PetShopOnline.Pages.Shipper.ChangePassword
 {
     [Authorize(Roles = "3")]
     public class IndexModel : PageModel
     {
-        private readonly ProjectContext dbcontext;
-        public IndexModel(ProjectContext dbcontext)
+        private readonly DTB_PETSHOPContext dbcontext;
+        public IndexModel(DTB_PETSHOPContext dbcontext)
         {
             this.dbcontext = dbcontext;
         }
