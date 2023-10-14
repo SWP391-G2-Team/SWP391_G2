@@ -32,7 +32,6 @@
   <ItemGroup>
     <Folder Include="Pages\GalleryPic\" />
     <Folder Include="Pages\Manager\" />
-    <Folder Include="Pages\Shared\HomePage\" />
     <Folder Include="Pages\Shipper\" />
     <Folder Include="Pages\ListProducts\" />
     <Folder Include="Pages\Product\" />
