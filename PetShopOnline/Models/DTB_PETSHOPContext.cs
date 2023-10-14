@@ -36,12 +36,11 @@ namespace PetShopOnline.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory
-                .GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                IConfigurationRoot config = builder.Build();
-                optionsBuilder.UseSqlServer(config.GetConnectionString("ConnectionStrings"));
+                var conf = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+                if (!optionsBuilder.IsConfigured)
+                {
+                    optionsBuilder.UseSqlServer(conf.GetConnectionString("DbConnection"));
+                }
             }
         }
 
