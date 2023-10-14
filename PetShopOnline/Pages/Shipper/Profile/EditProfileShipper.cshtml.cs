@@ -2,17 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PetShop_Project_SWP391.Models;
+using PetShopOnline.Models;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-namespace PetShop_Project_SWP391.Pages.Shipper.Profile
+namespace PetShopOnline.Pages.Shipper.Profile
 {
     [Authorize(Roles = "3")]
     public class EditProfileShipperModel : PageModel
     {
-        private readonly ProjectContext dBContext;
-        public EditProfileShipperModel(ProjectContext dBContext)
+        private readonly DTB_PETSHOPContext dBContext;
+        public EditProfileShipperModel(DTB_PETSHOPContext dBContext)
         {
             this.dBContext = dBContext;
         }
