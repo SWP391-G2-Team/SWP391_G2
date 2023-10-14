@@ -1,0 +1,203 @@
+﻿@page
+@model PetShopOnline.Pages.Account.SignUpModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<script src="~/js/signup/SignUp.js"></script>
+<link href="~/css/signup/style.css" rel="stylesheet" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basic Form</title>
+</head>
+
+<body>
+    <div class="banner">
+        <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://kienthucbonphuong.com/images/202006/pet-la-gi/pet-la-gi.jpg');">
+        </div>
+    </div>
+    <div class="main-content">
+        <form class="form-basic" asp-validation-summary="All" method="post">
+
+            <div class="form-title-row">
+                <h1>Đăng ký</h1>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Tên</span>
+                    <input asp-for="Customer.Name" />
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Email</span>
+                    <input type="email" name="email" asp-for="Account.Email">
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Tỉnh</span>
+                    <select id="provinceDropdown" onchange="loadDistricts()">
+                        <option value="">Chọn tỉnh</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Huyện</span>
+                    <select id="districtDropdown" onchange="loadWards()">
+                        <option value="">Chọn huyện</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Xã</span>
+                    <select id="wardDropdown">
+                        <option value="">Chọn xã</option>
+                    </select>
+                </label>
+            </div>
+            <input type="hidden" asp-for="Customer.Province" id="provinceNameInput" />
+            <input type="hidden" asp-for="Customer.District" id="districtNameInput" />
+            <input type="hidden" asp-for="Customer.Wards" id="wardsNameInput" />
+
+            <div class="form-row">
+                <label>
+                    <span>Địa chỉ cụ thể</span>
+                    <textarea asp-for="Customer.Address"></textarea>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Điện thoại</span>
+                </label>
+                <input id="phoneNumber" type="text" asp-for="Customer.Phone"
+                       oninput="checkPhoneNumberFormat()" />
+                <br />
+                <span id="phoneErrorSpan" style="color: red; text-align:center"></span>
+                <div class="msg-error" style="text-align:center;color:red; margin-top: 5px">
+                    @ViewData["msgPhone"]
+                </div>
+                <br />
+            </div>
+
+            <div class="form-row">
+                <input class="submits" type="submit" value="Đăng ký" style="margin-bottom: 30px;" />
+            </div>
+            <div class="msg-error" style="text-align:center;color:red">
+                @ViewData["msgEmpty"]
+                @ViewData["msgEmailSame"]
+                @ViewData["msgEmail"]
+                @ViewData["msgError"]
+                @ViewData["error"]
+            </div>
+            <div style="text-align:left;color:green">
+                @ViewData["msgSuccess"]
+                @ViewData["message"]
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
+<script>
+    function updateDisplayedNames() {
+        var provinceDropdown = document.getElementById("provinceDropdown");
+        var districtDropdown = document.getElementById("districtDropdown");
+        var wardDropdown = document.getElementById("wardDropdown");
+
+        var selectedProvinceOption = provinceDropdown.options[provinceDropdown.selectedIndex];
+        var selectedDistrictOption = districtDropdown.options[districtDropdown.selectedIndex];
+        var selectedWardOption = wardDropdown.options[wardDropdown.selectedIndex];
+
+        var provinceNameInput = document.getElementById("provinceNameInput");
+        var districtNameInput = document.getElementById("districtNameInput");
+        var wardsNameInput = document.getElementById("wardsNameInput");
+
+        provinceNameInput.value = selectedProvinceOption.text;
+        districtNameInput.value = selectedDistrictOption.text;
+        wardsNameInput.value = selectedWardOption.text;
+    }
+
+    function loadDistricts() {
+        var provinceDropdown = document.getElementById("provinceDropdown");
+        var selectedProvinceOption = provinceDropdown.options[provinceDropdown.selectedIndex];
+        selectedProvinceName = selectedProvinceOption.text;
+
+        fetch(`https://provinces.open-api.vn/api/p/${selectedProvinceOption.value}?depth=2`)
+            .then(response => response.json())
+            .then(data => {
+                var districts = data.districts;
+                var districtDropdown = document.getElementById("districtDropdown");
+                var wardDropdown = document.getElementById("wardDropdown");
+
+                // Clear existing options in district and ward dropdowns
+                districtDropdown.innerHTML = "";
+                wardDropdown.innerHTML = "";
+
+                // Add new district options
+                for (var i = 0; i < districts.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = districts[i].code;
+                    option.text = districts[i].name;
+                    districtDropdown.appendChild(option);
+                }
+
+                // Update displayed names after loading districts
+                updateDisplayedNames();
+
+                // Trigger the change event on district dropdown to load wards
+                districtDropdown.dispatchEvent(new Event("change"));
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+
+    function loadWards() {
+        var districtDropdown = document.getElementById("districtDropdown");
+        var selectedDistrictOption = districtDropdown.options[districtDropdown.selectedIndex];
+        selectedDistrictName = selectedDistrictOption.text;
+
+        if (selectedDistrictOption.value === "") {
+            // Get the first district option
+            var firstDistrictOption = districtDropdown.querySelector("option:not([value=''])");
+            selectedDistrictName = firstDistrictOption.text;
+            firstDistrictOption.selected = true;
+        }
+
+        fetch(`https://provinces.open-api.vn/api/d/${selectedDistrictOption.value}?depth=2`)
+            .then(response => response.json())
+            .then(data => {
+                var wards = data.wards;
+                var wardDropdown = document.getElementById("wardDropdown");
+
+                // Clear existing options in ward dropdown
+                wardDropdown.innerHTML = "";
+
+                // Add new ward options
+                for (var i = 0; i < wards.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = wards[i].code;
+                    option.text = wards[i].name;
+                    wardDropdown.appendChild(option);
+                }
+
+                // Update displayed names after loading wards
+                updateDisplayedNames();
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    }
+</script>
