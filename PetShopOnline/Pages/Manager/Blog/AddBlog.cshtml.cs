@@ -32,7 +32,7 @@ namespace PetShopOnline.Pages.Manager.Blog
         public async Task<IActionResult> OnGet()
         {
             if (HttpContext.Session.GetString("PetSession") == null)
-                return RedirectToPage("/account/singnin");
+                return RedirectToPage("/account/signin");
 
             Account = JsonSerializer.Deserialize<Models.Account>(HttpContext.Session.GetString("PetSession"));
             Employee = dBContext.Employees.FirstOrDefault(c => c.EmployeeId == Account.EmployeeId);
