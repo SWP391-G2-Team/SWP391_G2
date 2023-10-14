@@ -1,0 +1,42 @@
+﻿@page
+@model PetShop_Project_SWP391.Pages.Shipper.ChangePassword.IndexModel
+@{
+}
+@{
+    ViewData["Title"] = "Đổi mật khẩu";
+}
+<div style="margin-top:100px">
+
+</div>
+<h1>@ViewData["Title"]</h1>
+<form method="post">
+    <input asp-for="Account.AccountId" type="hidden" />
+    <body>
+        <div class="container1">
+            <div class="a1">
+                <label for="currentPassword">Mật khẩu cũ:</label>
+                <input type="password" id="currentPassword" asp-for="CurrentPassword" />
+                <span asp-validation-for="CurrentPassword" class="text-danger" style="color: red;"></span>
+                <span style="color: red;">@ViewData["PasswordError"]</span>
+            </div>
+            <div class="a1">
+                <label for="newPassword">Mật khẩu mới:</label>
+                <input type="password" id="newPassword" asp-for="NewPassword" />
+                <span asp-validation-for="NewPassword" class="text-danger" style="color: red;"></span>
+            </div>
+            <div class="a1">
+                <label for="confirmPassword">Xác nhận lại mật khẩu:</label>
+                <input type="password" id="confirmPassword" asp-for="ConfirmPassword" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger" style="color: red;"></span>
+            </div>
+            <div class="a2" id="form-title">
+                <input type="submit" value="Đổi mật khẩu" />
+                <span style="color: forestgreen;">@ViewData["Success"]</span>
+            </div>
+        </div>
+    </body>
+</form>
+<link href="~/css/changepassword.css" rel="stylesheet" />
+
+
+
