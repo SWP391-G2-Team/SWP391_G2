@@ -2,6 +2,7 @@
 @model PetShopOnline.Pages.Manager.IndexModel
 @{
 }
+
 @section statisticsale{
     <head>
         <meta charset="UTF-8">
@@ -10,131 +11,105 @@
         <title>Index</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     </head>
-    <div class="breadcrumbs">
-        <div class="col-sm-4">
-            <div class="page-header float-left">
-                <div class="page-title">
-                    <h1>Thống kê khách hàng</h1>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-8">
-            <div class="page-header float-right">
-                <div class="page-title">
-                    <ol class="breadcrumb text-right">
-                        <li><a href="#">Thống kê khách hàng</a></li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="content mt-3">
+    <main id="main" class="main">
 
-        <div class="col-sm-12">
-            <div class="alert  alert-success alert-dismissible fade show" role="alert">
-                <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        </div>
+        <div class="pagetitle">
+            <h1>Dashboard</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">Thống kê bán hàng</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
 
+        <section class="section dashboard">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-12 col-xxl-3 col-md-4">
+                            <div class="card info-card sales-card">
 
-        <div class="col-sm-6 col-lg-3">
-            <div class="card text-white bg-flat-color-1">
-                <div class="card-body pb-0">
-                    <h4 class="mb-0">
-                        @Model.TotalWeeklySales $
-                    </h4>
-                    <p class="text-light">Doanh thu hàng tuần</p>
+                                <div class="card-body">
+                                    <h5 class="card-title"> Doanh thu hàng tuần</h5>
 
-                    <div class="chart-wrapper px-0" style="height:70px;" height="70">
-                        <canvas id="widgetChart1"></canvas>
-                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
 
-                </div>
+                                            <i class="bi bi-currency-dollar"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>@Model.TotalWeeklySales</h6>
 
-            </div>
-        </div>
-        <!--/.col-->
-
-        <div class="col-sm-6 col-lg-3">
-            <div class="card text-white bg-flat-color-2">
-                <div class="card-body pb-0">
-                    <h4 class="mb-0">
-                        <span class="count">@Model.TotalOrders</span>
-                    </h4>
-                    <p class="text-light">Tổng số đơn đặt hàng</p>
-
-                    <div class="chart-wrapper px-0" style="height:70px;" height="70">
-                        <canvas id="widgetChart2"></canvas>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!--/.col-->
-
-        <div class="col-sm-6 col-lg-3">
-            <div class="card text-white bg-flat-color-3">
-                <div class="card-body pb-0">
-                    <h4 class="mb-0">
-                        <span class="count">@Model.Total</span>
-                    </h4>
-                    <p class="text-light">Tổng số khách hàng</p>
-
-                </div>
-
-                <div class="chart-wrapper px-0" style="height:70px;" height="70">
-                    <canvas id="widgetChart3"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="content-right">
-        <div class="content-main">
-            <div id="content-main-dashboard">
-                <div id="dashboard-2">
-                    <div style="margin-left:20px">
-                        <form method=get>
-                            <label>Năm</label><br />
-                            <select name="Year" onchange="this.form.submit()">
-                                @{
-                                    foreach (var year in Model.Years)
-                                    {
-                                        if (year == (int)ViewData["Year"])
-                                        {
-                                            <option selected value="@year">@year</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@year">@year</option>
-                                        }
-                                    }
-                                }
-                            </select>
-                        </form>
-                    </div>
-                    <br />
-                    <div id="chart" style="text-align: center;">
-                        <div id="chart1">
-                            <h3>Thống kê Đơn hàng (Tháng)</h3>
-                            <canvas id="myChart1" style="width: 100%;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div id="chart2">
-                            <canvas id="myChart2" style="width: 80%;"></canvas>
+
+                        <div class="col-xxl-3 col-12 col-md-4">
+                            <div class="card info-card revenue-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tổng số đơn đặt hàng </h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-cart"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>@Model.TotalOrders</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-4 col-12 col-xl-4">
+                            <div class="card info-card customers-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Tổng số khách hàng</h5>
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-people"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>@Model.Total</h6>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div id="chart" style="text-align: center;">
+                                        <div id="chart1">
+                                            <h3>Thống kê Đơn hàng (Tháng)</h3>
+                                            <canvas id="myChart1" style="width: 100%;"></canvas>
+                                        </div>
+                                        <div id="chart2">
+                                            <canvas id="myChart2" style="width: 80%;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
-        </div>
-    </div>
+        </section>
+
+    </main>
+
     <script>
         function OrdersChart() {
             var xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
             new Chart("myChart1", {
                 type: "line",
                 data: {
@@ -178,6 +153,8 @@
         OrdersChart();
         CustomersChart();
     </script>
-    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="~/new_lib/css/style.css" rel="stylesheet" />
+
+    @* <link rel="~/css/style.css" style="stylesheet" /> *@
 }
 
