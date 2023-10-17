@@ -5,7 +5,9 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShopOnline", "PetShopOnline.csproj", "{2DB0EB65-263B-48A5-851D-C6E1B945CE48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetShopOnlineMVC", "..\PetShopOnlineMVC\PetShopOnlineMVC.csproj", "{C91AE821-10AA-4E41-970A-AEB9EC46F310}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetShopOnlineMVC", "..\PetShopOnlineMVC\PetShopOnlineMVC.csproj", "{C91AE821-10AA-4E41-970A-AEB9EC46F310}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRazor", "..\TestRazor\TestRazor.csproj", "{9B60A072-00C3-48F4-98C3-74F071D22E4F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C91AE821-10AA-4E41-970A-AEB9EC46F310}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C91AE821-10AA-4E41-970A-AEB9EC46F310}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C91AE821-10AA-4E41-970A-AEB9EC46F310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B60A072-00C3-48F4-98C3-74F071D22E4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B60A072-00C3-48F4-98C3-74F071D22E4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B60A072-00C3-48F4-98C3-74F071D22E4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B60A072-00C3-48F4-98C3-74F071D22E4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
