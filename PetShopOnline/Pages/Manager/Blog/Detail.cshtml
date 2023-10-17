@@ -1,0 +1,118 @@
+﻿@page
+@model PetShopOnline.Pages.Manager.Blog.BlogDetailModel
+
+
+<style>
+    body {
+        font-family: ArTimes New Roman;
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    .ftco-section {
+        padding: 60px 0;
+    }
+
+        /* Main heading styles */
+        .ftco-section h2 {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Paragraph styles */
+        .ftco-section p {
+            margin-bottom: 20px;
+        }
+
+    /* Images styles */
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+        padding-left: 30px;
+    }
+
+        /* Sidebar heading styles */
+        .sidebar h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Sidebar links styles */
+        .sidebar a {
+            color: #333;
+            text-decoration: none;
+        }
+
+            .sidebar a:hover {
+                color: #ff8800;
+            }
+
+    /* Comment form styles */
+    .comment-form-wrap {
+        margin-top: 50px;
+    }
+
+        .comment-form-wrap h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .comment-form-wrap .form-control {
+            margin-bottom: 20px;
+        }
+
+        .comment-form-wrap .btn-primary {
+            background-color: #ff8800;
+            color: #fff;
+        }
+
+            .comment-form-wrap .btn-primary:hover {
+                background-color: #ff6600;
+            }
+</style>
+
+<body>
+
+    <!-- END nav -->
+
+    <section class="ftco-section ftco-degree-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 ftco-animate">
+                    <h2 class="mb-3">@Model.BlogDetail.Heading</h2>
+                    <p style="font-size: 20px">@Model.BlogDetail.PublishedDate</p>
+                    <p>
+                        <img src="@Model.BlogDetail.FeaturedImageUrl" alt="" class="img-fluid">
+                    </p>
+                    <p style="font-size: 20px ; font-style:italic">@Model.BlogDetail.ShortDescription</p>
+                    <p> @Html.Raw(Model.BlogDetail.Content)</p>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <script>
+
+
+        function toggleSidebar() {
+            var sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        var sidebarToggle = document.querySelector('.sidebar-toggle');
+        sidebarToggle.addEventListener('click', toggleSidebar);
+
+    </script>
+</body>
