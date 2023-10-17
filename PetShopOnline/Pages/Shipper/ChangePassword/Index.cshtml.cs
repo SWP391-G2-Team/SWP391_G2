@@ -41,7 +41,7 @@ namespace PetShopOnline.Pages.Shipper.ChangePassword
         public async Task<IActionResult> OnGet()
         {
             if (HttpContext.Session.GetString("PetSession") == null)
-                return RedirectToPage("/account/singnin");
+                return RedirectToPage("/Account/SignIn");
 
             Account = JsonSerializer.Deserialize<@Models.Account>(HttpContext.Session.GetString("PetSession"));
             return Page();
