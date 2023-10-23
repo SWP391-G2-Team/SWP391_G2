@@ -42,7 +42,7 @@ namespace PetShopOnline.Pages.Manager
         {
             if (HttpContext.Session.GetString("PetSession") == null)
             {
-                return RedirectToPage("/account/singnin");
+                return RedirectToPage("/Account/SignIn");
             }
 
             if (Year is null) Year = DateTime.Now.Year;

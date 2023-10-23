@@ -1,13 +1,10 @@
 ﻿@page
-@model PetShopOnline.Pages.Shipper.ChangePassword.IndexModel
+@model PetShopOnline.Pages.Manager.ChangePassword.IndexModel
 @{
 }
 @{
     ViewData["Title"] = "Đổi mật khẩu";
 }
-<div style="margin-top:100px">
-
-</div>
 <h1>@ViewData["Title"]</h1>
 <form method="post">
     <input asp-for="Account.AccountId" type="hidden" />
@@ -37,6 +34,3 @@
     </body>
 </form>
 <link href="~/css/changepassword.css" rel="stylesheet" />
-
-
-

@@ -1,16 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.DotNet.Scaffolding.Shared.ProjectModel;
 using Microsoft.EntityFrameworkCore;
 using PetShopOnline.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 
-namespace PetShopOnline.Pages.Shipper.ChangePassword
+namespace PetShopOnline.Pages.Manager.ChangePassword
 {
-    [Authorize(Roles = "3")]
+    [Authorize(Roles = "1")]
     public class IndexModel : PageModel
     {
         private readonly DTB_PETSHOPContext dbcontext;
@@ -29,7 +28,7 @@ namespace PetShopOnline.Pages.Shipper.ChangePassword
 
         [Required(ErrorMessage = "Mật khẩu mới là bắt buộc.")]
         [MinLength(8, ErrorMessage = "Mật khẩu phải có ít nhất {1} ký tự.")]
-        [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{8,}$", ErrorMessage = "Mật khẩu phải chứa ít nhất một chữ cái viết thường, một chữ cái viết hoa, một chữ số và một ký tự đặc biệt.")]
+        [RegularExpression("^(?!.*\\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\da-zA-Z]).{8,}$", ErrorMessage = "Mật khẩu phải chứa ít nhất một chữ cái viết thường, một chữ cái viết hoa, một chữ số và một ký tự đặc biệt. Không được chứa khoảng trắng.")]
         [BindProperty]
         public string NewPassword { get; set; }
 
@@ -41,7 +40,7 @@ namespace PetShopOnline.Pages.Shipper.ChangePassword
         public async Task<IActionResult> OnGet()
         {
             if (HttpContext.Session.GetString("PetSession") == null)
-                return RedirectToPage("/Account/SignIn");
+                return RedirectToPage("/account/signin");
 
             Account = JsonSerializer.Deserialize<@Models.Account>(HttpContext.Session.GetString("PetSession"));
             return Page();
@@ -75,6 +74,5 @@ namespace PetShopOnline.Pages.Shipper.ChangePassword
 
             return Page();
         }
-
     }
 }
