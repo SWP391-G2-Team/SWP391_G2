@@ -1,0 +1,92 @@
+﻿@model List<PetShop_Project_SWP391.Models.Product>
+
+<div class="topbar">
+    <!-- Mã HTML cho topbar -->
+</div>
+
+<div class="product-list-content">
+    <div class="product-carousel">
+        @foreach (var product in Model)
+        {
+            <div class="product-card">
+                <img class="product-image" src="@product.Pictures.FirstOrDefault()?.Picture" alt="Hình ảnh sản phẩm">
+                <div class="card-body">
+                    <h4 class="card-title product-name">
+                        <a href="/Product/productdetail?id=@product.ProductId">@product.ProductName</a>
+                    </h4>
+                    @if (product.Status == false || product.QuantityPerUnit <= 0)
+                    {
+                        <p class="card-text product-price">$@product.UnitPrice</p>
+                        <a href="#" style="color: red;background-color: rgba(0, 0, 0, 0.5);width:80%;" class="btn btn-primary">Hết hàng</a>
+                    }
+                    else
+                    {
+                        <p class="card-text product-price">$@product.UnitPrice</p>
+                        <a href="/Product/ProductDetail" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .product-list-content {
+        margin-top: 80px; /* Chiều cao của topbar */
+    }
+
+    .product-carousel {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .product-card {
+        flex-basis: 25%;
+        margin: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+    .product-image {
+        width: 100%;
+        object-fit: cover;
+        height: 200px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title a {
+        color: #333;
+        text-decoration: none;
+    }
+
+        .card-title a:hover {
+            text-decoration: underline;
+        }
+
+    .card-text {
+        margin-top: 10px;
+    }
+
+    .btn-primary {
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        margin-top: auto;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #f44336;
+        }
+</style>

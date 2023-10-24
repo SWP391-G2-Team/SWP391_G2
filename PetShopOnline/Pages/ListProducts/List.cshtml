@@ -1,0 +1,196 @@
+﻿@page
+@model PetShopOnline.Pages.ListProducts.ListModel
+
+<style>
+    /* Sidebar styles */
+    .sidebar {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        bottom: 0;
+        width: 220px;
+        background-color: #f7f7f7;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .sidebar-category-list {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .sidebar-category-list li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-category-list a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+            .sidebar-category-list a:hover {
+                color: #ff5722;
+            }
+
+    /* Main content styles */
+    .main-content {
+        margin-left: 240px;
+    }
+
+    .category-content {
+        margin-bottom: 30px;
+    }
+
+    .category-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .product-carousel {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .card-product {
+        margin-bottom: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+        .card-product:hover {
+            transform: translateY(-5px);
+        }
+
+    .card-title a {
+        color: #333;
+        text-decoration: none;
+    }
+
+        .card-title a:hover {
+            text-decoration: underline;
+        }
+
+    .card-price {
+        margin-top: 10px;
+    }
+
+    .btn-primary {
+        background-color: #ff5722;
+        color: #fff;
+        border: none;
+        margin-top: 15px;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #f44336;
+        }
+
+    .active {
+        font-weight: bold;
+    }
+</style>
+
+<div class="topbar">
+    <!-- Mã HTML cho topbar -->
+</div>
+<div class="banner">
+    <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://kienthucbonphuong.com/images/202006/pet-la-gi/pet-la-gi.jpg');">
+    </div>
+</div>
+<div class="main-content">
+    <section id="vegetables" class="gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content">
+                        @foreach (var category in Model.CategoryProducts)
+                        {
+                            <div id="category-content-@category.Category.CategoryId" class="category-content">
+                                <h2 class="category-title">@category.Category.CategoryName</h2>
+                                <div class="product-carousel owl-carousel">
+                                    @foreach (var product in category.Products)
+                                    {
+                                        <div class="card card-product">
+                                            <div class="card-body">
+                                                <img class="product-image" src="@product.Pictures.FirstOrDefault()?.Picture" alt="Hình ảnh sản phẩm">
+                                                <h4 class="card-title product-name">
+                                                    <a href="/Product/productdetail?id=@product.ProductId">@product.ProductName</a>
+                                                </h4>
+                                                @if (product.Status == false || product.QuantityPerUnit <= 0)
+                                                {
+                                                    <p class="card-text product-price">$@product.UnitPrice</p>
+
+                                                    <a href="#"><input type="button" value="Hết hàng" style="background-color: rgba(0, 0, 0, 0.5); color:red;border: 1px solid gray;"></a>
+                                                }
+                                                else
+                                                {
+                                                    <p class="card-text product-price">$@product.UnitPrice</p>
+
+                                                    @*<a asp-page="/Product/ProductDetail" asp-page-handler="addtocart" asp-route-id="@product.ProductId"><input type="button" value="ADD TO CART" style="background-color: #fff; color:red;border: 1px solid gray;"></a>*@
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="sidebar">
+    <h2 class="sidebar-title">Danh mục sản phẩm</h2>
+    <ul class="sidebar-category-list">
+        <li>
+            <a class="category-link" href="?isAllProducts=true">Tất cả sản phẩm</a>
+        </li>
+        @foreach (var categoryProduct in Model.CategoryProducts)
+        {
+            <li>
+                <a class="category-link" href="?categoryId=@categoryProduct.Category.CategoryId">@categoryProduct.Category.CategoryName</a>
+            </li>
+        }
+    </ul>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Xử lý sự kiện khi click vào danh mục sản phẩm
+        $('.category-link').on('click', function (event) {
+            event.preventDefault();
+            var categoryId = $(this).attr('href').split('=')[1];
+
+            // Tải lại danh sách sản phẩm theo danh mục được chọn
+            $.ajax({
+                url: "/NewFolder/List?handler=CategoryProducts&categoryId=" + categoryId,
+                method: "GET",
+                success: function (data) {
+                    $('.content').html(data);
+                }
+            });
+
+            // Đánh dấu danh mục được chọn trong sidebar
+            $('.category-link').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+</script>
