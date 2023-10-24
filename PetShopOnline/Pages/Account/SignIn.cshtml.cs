@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.DotNet.Scaffolding.Shared.ProjectModel;
 using System.Security.Claims;
 using PetShopOnline.Models;
 using Microsoft.EntityFrameworkCore;

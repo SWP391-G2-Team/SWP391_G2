@@ -4,10 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using PetShopOnline.Models;
 using System.Net.Mail;
 using System.Net;
-using System.Security.Principal;
 using System.Text;
 using System;
-using Microsoft.DotNet.Scaffolding.Shared.ProjectModel;
 
 namespace PetShopOnline.Pages.Account
 {
