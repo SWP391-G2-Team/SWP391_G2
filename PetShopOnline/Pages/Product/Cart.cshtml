@@ -2,3 +2,93 @@
 @model PetShopOnline.Pages.Product.CartModel
 @{
 }
+<link href="~/css/cartshopping.css" rel="stylesheet" />
+<script src="~/js/signup.js"></script>
+<head>
+    <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/01/Hinh-nen-Cho-1.jpg?ssl\u003d1');">
+    </div>
+</head>
+<body>
+    <div id="cart">
+        <div id="cart-title">
+            <h3>Giỏ Hàng Mua Sắm</h3>
+        </div>
+        <div id="cart-content">
+            @ViewData["emptymess"]
+            @ViewData["msgQuantityProduct"]
+            @{
+                if (Model.CartItems != null)
+                {
+                    foreach (var cartitem in Model.CartItems)
+                    {
+                        <div class="cart-item">
+                            <div class="cart-item-infor">
+                                @*<div class="cart-item-img">
+                                    <img src="@cartitem.Product.Pictures.FirstOrDefault()?.Picture" />
+                                </div>*@
+                                <div class="cart-item-name" style="margin-left:3%">
+                                    <a href="/Product/ProductDetail?id=@cartitem.Product.ProductId">@cartitem.Product.ProductName</a>
+                                </div>
+                                <div class="cart-item-price">
+                                  $@(cartitem.Product.UnitPrice * cartitem.Quantity)
+                                </div>
+                                <div class="cart-item-button">
+                                    <a asp-page="/product/cart" asp-page-handler="delete" asp-route-id="@cartitem.Product.ProductId">Xóa</a>
+                                </div>
+                            </div>
+                            <div class="cart-item-function">
+                                <a asp-page="/product/cart" asp-page-handler="minus" asp-route-id="@cartitem.Product.ProductId">-</a>
+                                <input type="text" value="@cartitem.Quantity" disabled />
+                                <a asp-page="/product/cart" asp-page-handler="plus" asp-route-id="@cartitem.Product.ProductId">+</a>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+        <div id="cart-summary">
+            <div id="cart-summary-content">Tổng Giá Tiền: <span style="color:red">@ViewData["total"] $</span></div>
+        </div>
+        <form method="post">
+            <div id="customer-info">
+                <div id="customer-info-content">
+                    <h3>Thông Tin Khách Hàng:</h3>
+                    <div id="customer-info-detail">
+                        <div id="customer-info-left">
+                            <input type="text" placeholder="Tên Khách Hàng *" asp-for="Customer.Name" class="required-field" /><br />
+                            <input type="text" placeholder="Số Điện Thoại *" asp-for="Customer.Phone" class="required-field" /><br />
+                        </div>
+                        <div id="customer-info-right">
+                            <input type="text" placeholder="Địa Chỉ *" asp-for="Customer.Address" class="required-field" /><br />
+                            <input type="text" placeholder="Tỉnh *" asp-for="Customer.Province" /><br />
+                        </div>
+                    </div>
+                    <div style="color:red">
+                        Điền tất cả thông tin được nêu trên
+                    </div>
+                </div>
+            </div>
+            <div id="customer-info">
+                <div id="customer-info-content">
+                    <h3>PAYMENT METHODS:</h3>
+                    <div id="customer-info-payment">
+                        <div>
+                            <input type="radio" name="rbPaymentMethod" checked />
+                            Payment C.O.D - Payment on delivery
+                        </div>
+                        <div>
+                            <input type="radio" name="rbPaymentMethod" disabled />
+                            Payment via online payment gateway
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="cart-order" style="margin-bottom : 2%">
+                <span style="color:red">
+                    @ViewData["msgEmpty"]
+                </span>
+                <input type="submit" value="ORDER" style="background-color: orangered; color:white;" />
+            </div>
+        </form>
+    </div>
+</body>

@@ -2,3 +2,29 @@
 @model PetShopOnline.Pages.Manager.TableOrderList.EditModel
 @{
 }
+@section manager_edit_order
+    {
+    @{
+        ViewData["Title"] = "Edit Order";
+    }
+    <div id="content-right">
+        <div class="path-admin">EDIT ORDER</b></div>
+        <div class="content-main">
+            <form method="post" id="content-main-order">
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <input asp-for="Order.OrderId" type="hidden" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label class="labels">Order Status</label>
+                        <select class="form-control" asp-for="SelectedOrderStatus" asp-items="Model.OrderStatuses"></select>
+                    </div>
+                </div>
+                <input type="submit" value="Save" class="btn btn-primary profile-button" style="margin-bottom: 30px;" />
+            </form>
+        </div>
+    </div>
+    <link href="~/css/managereditorder.css" rel="stylesheet" />
+}
