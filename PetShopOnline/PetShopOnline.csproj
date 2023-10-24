@@ -31,7 +31,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\Product\" />
-    <Folder Include="Pages\Shipper\OrderShipper\" />
+    <Folder Include="Pages\Shipper\NewFolder\" />
   </ItemGroup>
 
 </Project>

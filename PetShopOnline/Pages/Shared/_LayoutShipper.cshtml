@@ -38,7 +38,7 @@
                         var Accountshipper = new Shipper();
                         if (acoount is not null)
                         {
-                            var acc = JsonSerializer.Deserialize<PetShop_Project_SWP391.Models.Account>(acoount);
+                            var acc = JsonSerializer.Deserialize<PetShopOnline.Models.Account>(acoount);
                             int? shipper = acc.ShipperId;
                             if (shipper.HasValue)
                             {
