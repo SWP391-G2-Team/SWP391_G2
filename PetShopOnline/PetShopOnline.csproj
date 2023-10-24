@@ -30,10 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\GalleryPic\" />
-    <Folder Include="Pages\Shipper\" />
-    <Folder Include="Pages\ListProducts\" />
     <Folder Include="Pages\Product\" />
+    <Folder Include="Pages\Shipper\OrderShipper\" />
   </ItemGroup>
 
 </Project>
