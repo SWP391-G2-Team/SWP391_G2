@@ -1,0 +1,190 @@
+﻿@page
+@model PetShopOnline.Pages.GalleryPic.GalleryModel
+@{
+}
+@{
+    ViewData["Title"] = "Gallery";
+}
+@section gallery{
+    <style>
+        body {
+            background-color: #eee;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Topbar styles */
+        .topbar {
+            background-color: white;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        /* Gallery styles */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 10px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 4px #333;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .thumbnail {
+            transform: scale(1.1);
+        }
+
+        .item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .gallery-item:hover .item-overlay {
+            opacity: 1;
+        }
+
+        .overlay-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn:hover {
+                background-color: #555;
+            }
+
+        /* Caption styles */
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            opacity: 1;
+        }
+
+        /* Fullscreen image styles */
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            cursor: zoom-out;
+        }
+
+        .fullscreen-image {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+    </style>
+
+    <div class="topbar">
+        <!-- Your topbar content here -->
+        <h2>Bộ Sưu Tập</h2>
+    </div>
+    <br />
+    <div>
+        <h4>Những bức ảnh xinh đẹp về thú cưng</h4>
+    </div>
+    <div class="gallery-container">
+
+        @foreach (var picture in Model.Pictures)
+        {
+
+            <div class="gallery-item">
+                <img src="@picture.Picture" alt="@picture.Caption" class="thumbnail" />
+                <div class="item-overlay">
+                    <div class="overlay-buttons">
+                        <button class="btn btn-fullscreen" onclick="viewFullScreen('@picture.Picture')">Full Screen</button>
+                        <button class="btn btn-download" onclick="downloadItem('@picture.Picture')">Download</button>
+                    </div>
+                </div>
+                <div class="caption">@picture.Caption</div>
+            </div>
+        }
+    </div>
+
+    <div class="fullscreen-overlay" id="fullscreenOverlay" onclick="closeFullScreen()">
+        <img src="" alt="" class="fullscreen-image" id="fullscreenImage" />
+    </div>
+
+    <script>
+        function viewFullScreen(picture) {
+            const fullscreenOverlay = document.getElementById("fullscreenOverlay");
+            const fullscreenImage = document.getElementById("fullscreenImage");
+
+            fullscreenImage.src = picture;
+            fullscreenOverlay.style.display = "flex";
+        }
+
+        function closeFullScreen() {
+            const fullscreenOverlay = document.getElementById("fullscreenOverlay");
+            fullscreenOverlay.style.display = "none";
+        }
+
+        function downloadItem(picture) {
+            const a = document.createElement("a");
+            a.href = picture;
+            a.download = "image.jpg"; // Tên tập tin khi tải xuống, bạn có thể thay đổi tên tùy ý.
+            a.target = "_blank"; // Mở liên kết trong một tab mới
+
+            document.body.appendChild(a);
+            a.click();
+
+            // Sau khi tạo liên kết tạm thời, lắng nghe sự kiện "focusout" để xóa nó sau khi người dùng đã chọn vị trí lưu.
+            a.addEventListener("focusout", function () {
+                document.body.removeChild(a);
+            });
+        }
+    </script>
+}
