@@ -1,0 +1,41 @@
+﻿@using PetShopOnline.Models;
+
+
+@model List<Order>
+
+
+<link rel="stylesheet" href="~/css/Styles.css">
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">UnitPrice</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Shipped Date</th>
+            <th scope="col">Order Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            @* foreach (var orderDetail in order.OrderDetails)
+        {
+        <tr>
+        <th scope="row">@order.OrderId</th>
+        <td>@orderDetail.Product.ProductName</td>
+        <td>@orderDetail.Quantity</td>
+        <td>@orderDetail.UnitPrice</td>
+        <td>@Html.DisplayFor(model => order.OrderDate)</td>
+        <td>@Html.DisplayFor(model => order.ShippedDate)</td>
+        <td>
+        <a href="/Manager/TableOrderList/Detail?orderId=@order.OrderId" class="btn btn-primary">Detail</a>
+        </td>>
+        </tr>*@
+        }
+        }
+    </tbody>
+</table>
