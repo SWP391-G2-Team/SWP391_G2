@@ -1,0 +1,120 @@
+﻿@page
+@model PetShopOnline.Pages.Customers.EditProfileModel
+@{
+}
+
+<!DOCTYPE html>
+<html>
+<script src="~/js/signup/javascript.js"></script>
+<link href="~/css/signup/style.css" rel="stylesheet" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basic Form</title>
+</head>
+
+<body>
+    <div class="banner">
+    <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://kienthucbonphuong.com/images/202006/pet-la-gi/pet-la-gi.jpg');">
+    </div>
+</div>
+    <div class="main-content">
+        <form class="form-basic" asp-validation-summary="All" method="post">
+
+            <div class="form-title-row">
+                <h1>Thay đổi thông tin</h1>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Tên </span>
+                    <input asp-for="Customer.Name" />
+                </label>
+            </div>
+        <div class="form-row">
+                <label>
+                    <span>Tỉnh</span>
+                    <select id="provinceDropdown" onchange="loadDistricts()" asp-for="Customer.Province">
+                        <option value="">Chọn tỉnh</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Huyện</span>
+                    <select id="districtDropdown" onchange="loadWards()" asp-for="Customer.District">
+                        <option value="">Chọn huyện</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Xã</span>
+                    <select id="wardDropdown" asp-for="Customer.Wards">
+                        <option value="">Chọn xã</option>
+                    </select>
+                </label>
+            </div>
+             <div class="form-row">
+                <label>
+                    <span>Tỉnh</span>
+                    <input asp-for="Customer.Province"></input>
+                </label>
+            </div>
+             <div class="form-row">
+                <label>
+                    <span>Huyện/Quận</span>
+                    <input asp-for="Customer.District"></input>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Xã/Thị Trấn</span>
+                    <input asp-for="Customer.Wards"></input>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Địa chỉ cụ thể</span>
+                    <textarea asp-for="Customer.Address"></textarea>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Điện thoại</span>
+                </label>
+                <input id="phoneNumber" type="text" asp-for="Customer.Phone"
+                       oninput="checkPhoneNumberFormat()" />
+                <br />
+                <span id="phoneErrorSpan" style="color: red; text-align:center"></span>
+                <div class="msg-error" style="text-align:center;color:red; margin-top: 5px">
+                    @ViewData["msgPhone"]
+                </div>
+                <br />
+            </div>
+
+            <div class="form-row">
+                <input class="submits" type="submit" value="Save" style="margin-bottom: 30px;" />
+            </div>
+            <div class="msg-error" style="text-align:center;color:red">
+                @ViewData["msgEmpty"]
+                @ViewData["msgEmailSame"]
+                @ViewData["msgEmail"]
+                @ViewData["msgError"]
+                @ViewData["error"]
+            </div>
+            <div style="text-align:left;color:green">
+                @ViewData["msgSuccess"]
+                @ViewData["message"]
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

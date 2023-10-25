@@ -1,0 +1,240 @@
+﻿@page
+@model PetShopOnline.Pages.Customers.CustomersOrderDetailsModel
+@{
+}
+<style>
+    #content-left {
+        float: left;
+        width: 30%;
+        padding: 20px;
+        background-color: #f7f7f7;
+    }
+
+        #content-left h3 {
+            font-weight: normal;
+        }
+
+        #content-left ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+            #content-left ul li {
+                margin-bottom: 10px;
+            }
+
+    #content-right {
+        float: right;
+        width: 70%;
+        padding: 20px;
+    }
+
+    .path-admin {
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #555;
+    }
+
+    .content-main {
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ebebeb;
+        border-radius: 4px;
+    }
+
+    .profile-order-title {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+        .profile-order-title > div {
+            margin-bottom: 10px;
+        }
+
+    .profile-order-title-left {
+        font-weight: bold;
+        color: #555;
+        width: 50%;
+    }
+
+    .profile-order-title-right {
+        font-weight: bold;
+        color: #555;
+        width: 50%;
+        text-align: right;
+    }
+
+    .profile-order-status {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+</style>
+<div id="page-content" class="page-content">
+    <div class="banner">
+        <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://kienthucbonphuong.com/images/202006/pet-la-gi/pet-la-gi.jpg');">
+            <div class="container">
+                <h1 class="pt-5">
+                    Sản phẩm của bạn
+                </h1>
+                <p class="lead">
+                    Những sản phẩm bạn đã đặt của chúng tôi
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Đơn hàng của bạn</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <strong>Chi tiết đơn hàng:</strong><br>
+                            Người liên hệ: <br>
+                            @Model.Ship.ShipContact<br>
+                            Địa chỉ:<br>
+                            @Model.Ship.ShipAddress<br>
+                            Số điện thoại liên hệ:<br>
+                            @Model.Ship.PhoneContact
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <strong> Date </strong><br>
+                            <div class="profile-order-title-left">
+                                Ngày order: <br>@{
+                                    DateTime? orderDateNullable = Model.Order.OrderDate;
+                                    DateTime orderDate = orderDateNullable ?? DateTime.MinValue;
+                                    string formattedOrderDate = orderDate.ToString("dd/MM/yyyy");
+                                    @formattedOrderDate
+                                }
+                            </div>
+                            <div class="profile-order-title-left">
+                                Ngày giao hàng: <br>@{
+                                    DateTime? shippedDateNullable = Model.Order.ShippedDate;
+                                    DateTime shippedDate = shippedDateNullable ?? DateTime.MinValue;
+                                    string formattedShippedDate = shippedDate.ToString("dd/MM/yyyy");
+                                    @formattedShippedDate
+                                }
+                            </div>
+                        </p>
+                        <p>
+                            <strong>  Trạng thái </strong><br>
+                            @if (@Model.Order.OrderStatus == "Delivered")
+                            {
+                                <span style="color: green;">Đã nhận hàng</span>
+                            }
+                            else if (@Model.Order.OrderStatus == "Cancel")
+                            {
+                                <span style="color: red;">Đơn hàng bị huỷ</span>
+                            }
+                            else if (@Model.Order.OrderStatus == "Shipped")
+                            {
+                                <span style="color: yellow;">Giao hàng</span>
+                            }
+                            else if (@Model.Order.OrderStatus == "Future")
+                            {
+                                <span style="color: gray;">Đang trong quá trình chuẩn bị hàng</span>
+                            }
+                            else if (@Model.Order.OrderStatus == "Complete")
+                            {
+                                <span style="color: gray;">Đơn hàng đã chuẩn bị xong</span>
+                            }
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                            <strong>Order của bạn:</strong>
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm:</th>
+                                        <th class="text-right">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var orderDetail in Model.OrderDetails)
+                                    {
+                                        @if (orderDetail.Product != null)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @orderDetail.Product.ProductName
+                                                </td>
+                                                <td class="text-right">
+                                                    $@orderDetail.UnitPrice 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Số lượng sản phẩm
+                                                </td>
+                                                <td class="text-right">
+                                                    @orderDetail.Quantity
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                                <tfooter>
+                                    <tr>
+                                        <td>
+                                            <strong>Tổng phụ của giỏ hàng</strong>
+                                        </td>
+                                        <td class="text-right">
+                                            $@Model.SumPriceSubtotal 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Tiền ship</strong>
+                                        </td>
+                                        <td class="text-right">
+                                            $@Model.Ship.Freight 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Tổng giá sản phẩm</strong>
+                                        </td>
+                                        <td class="text-right">
+                                            <strong> $@Model.SumAllPrice </strong>
+                                        </td>
+                                    </tr>
+                                </tfooter>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:right; margin-right:3.5%">
+                @if (Model.Order.OrderStatus == "Future")
+                {
+                    <form method="post" asp-page-handler="active" asp-route-OrderId="@Model.Order.OrderId">
+                        <button style="color:green" type="submit">Huỷ đơn hàng</button>
+                    </form>
+                }
+                else
+                {
+                    <p style="color:gray">Không thể huỷ</p>
+                }
+                @ViewData["msgEmpty"]
+            </div>
+            <div class="modal-footer">
+                <a href="/Customers/CustomerInfomation"> <button type="button" class="btn btn-default" data-dismiss="modal">Trở lại</button></a>
+            </div>
+        </div>
+    </div>
