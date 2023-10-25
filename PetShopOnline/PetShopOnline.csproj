@@ -30,8 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Customers\Blog\" />
+    <Folder Include="Pages\Customers\ChangePassword\" />
     <Folder Include="Pages\Product\" />
-    <Folder Include="Pages\Shipper\NewFolder\" />
   </ItemGroup>
 
 </Project>

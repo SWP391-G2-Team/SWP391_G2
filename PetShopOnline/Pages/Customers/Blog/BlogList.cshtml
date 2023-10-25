@@ -1,0 +1,216 @@
+﻿@page
+@model PetShopOnline.Pages.Customers.Blog.BlogListModel
+@{
+}
+<head>
+    <style>
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        
+        .blog-entry {
+            margin-bottom: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+            .blog-entry:hover {
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            }
+
+        
+        .block-20 {
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+        }
+
+       
+        .text {
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .meta a {
+                color: #999;
+            }
+
+                .meta a:hover {
+                    color: #333;
+                }
+
+        .heading a {
+            color: #333;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .block-27 ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+            .block-27 ul li {
+                margin: 0 5px;
+            }
+
+                .block-27 ul li a {
+                    display: block;
+                    width: 30px;
+                    height: 30px;
+                    text-align: center;
+                    line-height: 30px;
+                    color: #333;
+                    border: 1px solid #ccc;
+                    border-radius: 50%;
+                    transition: background-color 0.3s ease;
+                }
+
+                    .block-27 ul li a.active,
+                    .block-27 ul li a:hover {
+                        background-color: #333;
+                        color: #fff;
+                        border-color: #333;
+                    }
+    </style>
+</head>
+
+<body>
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row d-flex">
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry align-self-stretch">
+                        <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/image_1.jpg');">
+                        </a>
+                        <div class="text p-4">
+                            <div class="meta mb-2">
+                                <div><a href="#">April 07, 2020</a></div>
+                                <div><a href="#">Admin</a></div>
+                                <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                            </div>
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry align-self-stretch">
+                        <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/image_2.jpg');">
+                        </a>
+                        <div class="text p-4">
+                            <div class="meta mb-2">
+                                <div><a href="#">April 07, 2020</a></div>
+                                <div><a href="#">Admin</a></div>
+                                <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                            </div>
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry align-self-stretch">
+                        <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/image_3.jpg');">
+                        </a>
+                        <div class="text p-4">
+                            <div class="meta mb-2">
+                                <div><a href="#">April 07, 2020</a></div>
+                                <div><a href="#">Admin</a></div>
+                                <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                            </div>
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry align-self-stretch">
+                        <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/image_4.jpg');">
+                        </a>
+                        <div class="text p-4">
+                            <div class="meta mb-2">
+                                <div><a href="#">April 07, 2020</a></div>
+                                <div><a href="#">Admin</a></div>
+                                <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                            </div>
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry align-self-stretch">
+                        <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/image_5.jpg');">
+                        </a>
+                        <div class="text p-4">
+                            <div class="meta mb-2">
+                                <div><a href="#">April 07, 2020</a></div>
+                                <div><a href="#">Admin</a></div>
+                                <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                            </div>
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex ftco-animate">
+                    <div class="blog-entry align-self-stretch">
+                        <a href="blog-single.html" class="block-20 rounded" style="background-image: url('images/image_6.jpg');">
+                        </a>
+                        <div class="text p-4">
+                            <div class="meta mb-2">
+                                <div><a href="#">April 07, 2020</a></div>
+                                <div><a href="#">Admin</a></div>
+                                <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                            </div>
+                            <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <div class="block-27">
+                            <ul>
+                                <li><a href="#">&lt;</a></li>
+                                <li class="active"><span>1</span></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&gt;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <script>
+        
+        document.addEventListener("DOMContentLoaded", function () {      
+            var blogEntries = document.querySelectorAll(".blog-entry");
+            blogEntries.forEach(function (entry) {
+                entry.addEventListener("mouseover", function () {
+                    this.classList.add("active");
+                });
+                entry.addEventListener("mouseout", function () {
+                    this.classList.remove("active");
+                });
+            });
+        });
+
+    </script>
+</body>
