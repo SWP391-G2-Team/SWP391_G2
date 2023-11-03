@@ -5,12 +5,12 @@
 <link href="~/css/cartshopping.css" rel="stylesheet" />
 <script src="~/js/signup.js"></script>
 <head>
-    <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/01/Hinh-nen-Cho-1.jpg?ssl\u003d1');">
+    <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://azpet.com.vn/wp-content/uploads/2021/07/Banner-Mobile-Cho-Canh.jpg');">
     </div>
 </head>
 <body>
-    <div id="cart">
-        <div id="cart-title">
+    <div id="cart" class="py-3">
+        <div id="cart-title" class=" mb-3">
             <h3>Giỏ Hàng Mua Sắm</h3>
         </div>
         <div id="cart-content">
@@ -22,25 +22,23 @@
                     foreach (var cartitem in Model.CartItems)
                     {
                         <div class="cart-item">
-                            <div class="cart-item-infor">
-                                @*<div class="cart-item-img">
-                                    <img src="@cartitem.Product.Pictures.FirstOrDefault()?.Picture" />
-                                </div>*@
-                                <div class="cart-item-name" style="margin-left:3%">
+                            <div class="cart-item-infor justify-content-between align-items-center px-3">
+
+                                <div class="cart-item-name d-flex ">
                                     <a href="/Product/ProductDetail?id=@cartitem.Product.ProductId">@cartitem.Product.ProductName</a>
+                                    <div class="cart-item-function">
+                                        <a asp-page="/product/cart" asp-page-handler="minus" asp-route-id="@cartitem.Product.ProductId">-</a>
+                                        <input type="text" value="@cartitem.Quantity" disabled />
+                                        <a asp-page="/product/cart" asp-page-handler="plus" asp-route-id="@cartitem.Product.ProductId">+</a>
+                                    </div>
                                 </div>
                                 <div class="cart-item-price">
-                                  $@(cartitem.Product.UnitPrice * cartitem.Quantity)
+                                    @(cartitem.Product.UnitPrice * cartitem.Quantity) VNĐ
+
                                 </div>
-                                <div class="cart-item-button">
-                                    <a asp-page="/product/cart" asp-page-handler="delete" asp-route-id="@cartitem.Product.ProductId">Xóa</a>
-                                </div>
+                                <a asp-page="/Product/Cart" class="btn btn-danger mx-3" asp-page-handler="delete" asp-route-id="@cartitem.Product.ProductId">Xóa</a>
                             </div>
-                            <div class="cart-item-function">
-                                <a asp-page="/product/cart" asp-page-handler="minus" asp-route-id="@cartitem.Product.ProductId">-</a>
-                                <input type="text" value="@cartitem.Quantity" disabled />
-                                <a asp-page="/product/cart" asp-page-handler="plus" asp-route-id="@cartitem.Product.ProductId">+</a>
-                            </div>
+
                         </div>
                     }
                 }
@@ -54,13 +52,13 @@
                 <div id="customer-info-content">
                     <h3>Thông Tin Khách Hàng:</h3>
                     <div id="customer-info-detail">
-                        <div id="customer-info-left">
-                            <input type="text" placeholder="Tên Khách Hàng *" asp-for="Customer.Name" class="required-field" /><br />
-                            <input type="text" placeholder="Số Điện Thoại *" asp-for="Customer.Phone" class="required-field" /><br />
+                        <div id="customer-info-left" class="form-group">
+                            <input type="text" placeholder="Tên Khách Hàng *" asp-for="Customer.Name" class="required-field form-control" /><br />
+                            <input type="text" placeholder="Số Điện Thoại *" asp-for="Customer.Phone" class="required-field form-control" /><br />
                         </div>
-                        <div id="customer-info-right">
-                            <input type="text" placeholder="Địa Chỉ *" asp-for="Customer.Address" class="required-field" /><br />
-                            <input type="text" placeholder="Tỉnh *" asp-for="Customer.Province" /><br />
+                        <div id="customer-info-right " class="form-group w-50">
+                            <input type="text" placeholder="Địa Chỉ *" asp-for="Customer.Address" class="required-field form-control" /><br />
+                            <input type="text" placeholder="Tỉnh *" asp-for="Customer.Province" class="form-control" /><br />
                         </div>
                     </div>
                     <div style="color:red">
@@ -83,11 +81,11 @@
                     </div>
                 </div>
             </div>
-            <div id="cart-order" style="margin-bottom : 2%">
+            <div id="cart-order" class="mr-5">
                 <span style="color:red">
                     @ViewData["msgEmpty"]
                 </span>
-                <input type="submit" value="ORDER" style="background-color: orangered; color:white;" />
+                <button type="submit" style="width: 200px;" class="btn btn-success py-3">ORDER</button>
             </div>
         </form>
     </div>

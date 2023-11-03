@@ -1,4 +1,187 @@
 ﻿@page
-@model PetShopOnline.Pages.Home.Blogs.BlogListModel
+@model PetShopOnline.Pages.Customers.Blog.BlogListModel
 @{
+
+
 }
+
+<style>
+
+
+
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+
+
+    .blog-entry {
+        margin-bottom: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+        .blog-entry:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+
+    .block-20 {
+        background-size: cover;
+        background-position: center;
+        height: 200px;
+    }
+
+
+    .text {
+        background-color: #fff;
+        padding: 20px;
+    }
+
+    .meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+        .meta a {
+            color: #999;
+        }
+
+            .meta a:hover {
+                color: #333;
+            }
+
+    .heading a {
+        color: #333;
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .block-27 ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+        .block-27 ul li {
+            margin: 0 5px;
+            display: flex;
+        }
+
+            .block-27 ul li a {
+                display: block;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                color: #333;
+                border: 1px solid #ccc;
+                border-radius: 50%;
+                transition: background-color 0.3s ease;
+            }
+
+                .block-27 ul li a.active,
+                .block-27 ul li a:hover {
+                    background-color: #333;
+                    color: #fff;
+                    border-color: #333;
+                }
+</style>
+
+<head>
+    <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/01/Hinh-nen-Cho-1.jpg?ssl\u003d1');">
+    </div>
+</head>
+
+<body>
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div id="product-title-2" style="width: 100%; margin-bottom: 50px;">
+                <form method="get">
+                    <div class="input-group">
+                        <input asp-for="@ViewData["txtSearch"]" type="text" name="txtSearch" class="form-control" placeholder="Search" />
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary btn-rounded">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row d-flex">
+                @foreach (var blog in Model.BlogDetails)
+                {
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="blog-entry align-self-stretch">
+                            <a href="/Home/Blogs/BlogDetail?id=@blog.BlogId" class="block-20 rounded">
+                                <img src="@blog.FeaturedImageUrl" style="width:300px ;height:200px; text-align:center">
+                            </a>
+                            <div class="text p-4">
+                                <div class="meta mb-2">
+                                    <div><a href="/Home/Blogs/BlogDetail?id=@blog.BlogId">@blog.PublishedDate?.ToString("d MMMM yyyy")</a></div>
+                                </div>
+
+                                <h3 class="heading"><a href="/Home/Blogs/BlogDetail?id=@blog.BlogId">@blog.PageTitle</a></h3>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <div class="block-27">
+                        <div class="block-27">
+                            <ul>
+                                <li>
+                                    <a href="~/Home/Blogs/BlogList?PageNum=1&txtSearch=@ViewData["txtSearch"]">First</a>
+                                    @if ((int)(ViewData["CurPage"]) > 1)
+                                    {
+                                        <a href="~/Home/Blogs/BlogList?PageNum=@((int)ViewData["CurPage"]-1)&txtSearch=@ViewData["txtSearch"]">&laquo;</a>
+                                    }
+                                </li>
+                                <li class="active">
+                                    @for (var i = 1; i <= (int)(@ViewData["TotalPage"]); i++)
+                                    {
+                                        if ((i - (int)@ViewData["CurPage"]) <= 1 && (i - (int)@ViewData["CurPage"]) >= -1)
+                                        {
+                                            <a href="~/Home/Blogs/BlogList?PageNum=@i&txtSearch=@ViewData["txtSearch"]" class=@((int)(ViewData["CurPage"])==@i ? "active" : "")>@i</a>
+                                        }
+                                    }
+                                </li>
+
+
+                                <li>
+                                    @if ((int)ViewData["CurPage"] < (int)ViewData["TotalPage"])
+                                    {
+                                        <a href="~/Home/Blogs/BlogList?PageNum=@((int)ViewData["CurPage"]+1)&txtSearch=@ViewData["txtSearch"]">&raquo;</a>
+                                    }
+                                    <a href="~/Home/Blogs/BlogList?PageNum=@ViewData["TotalPage"]&txtSearch=@ViewData["txtSearch"]">Last</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var blogEntries = document.querySelectorAll(".blog-entry");
+            blogEntries.forEach(function (entry) {
+                entry.addEventListener("mouseover", function () {
+                    this.classList.add("active");
+                });
+                entry.addEventListener("mouseout", function () {
+                    this.classList.remove("active");
+                });
+            });
+        });
+
+    </script>
+
+</body>

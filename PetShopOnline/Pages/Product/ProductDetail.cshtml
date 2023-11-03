@@ -1,10 +1,10 @@
 ﻿@page
 @model PetShopOnline.Pages.Product.ProductDetailModel
 @{
-        ViewData["Title"] = "ProductDetail";
+    ViewData["Title"] = "ProductDetail";
 }
 <head>
-    <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/01/Hinh-nen-Cho-1.jpg?ssl\u003d1');">
+    <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://azpet.com.vn/wp-content/uploads/2021/07/Banner-Mobile-Cho-Canh.jpg');">
     </div>
 </head>
 <body>
@@ -20,10 +20,10 @@
                                 <img id="mainImage" src="@Model.Product.Pictures.FirstOrDefault()?.Picture" />
                             </div>
                             @*<div id="product-img-items">
-                                <div><a href="#"><img src="@Model.Product.Pictures.FirstOrDefault()?.Picture" onclick="changeMainImage(this)" /></a></div>
-                                <div><a href="#"><img src="@Model.Product.Pictures.FirstOrDefault()?.Picture" onclick="changeMainImage(this)" /></a></div>
-                                <div><a href="#"><img src="@Model.Product.Pictures.FirstOrDefault()?.Picture" onclick="changeMainImage(this)" /></a></div>
-                                <div><a href="#"><img src="@Model.Product.Pictures.FirstOrDefault()?.Picture" onclick="changeMainImage(this)" /></a></div>
+                            <div><a href="#"><img src="@Model.Product.Pictures.FirstOrDefault()?.Picture" onclick="changeMainImage(this)" /></a></div>
+                            <div><a href="#"><img src="@Model.Product.Pictures.FirstOrDefault()?.Picture" onclick="changeMainImage(this)" /></a></div>
+                            <div><a href="#"><img src="@Model.Product.Pictures.FirstOrDefault()?.Picture" onclick="changeMainImage(this)" /></a></div>
+                            <div><a href="#"><img src="@Model.Product.Pictures.FirstOrDefault()?.Picture" onclick="changeMainImage(this)" /></a></div>
                             </div>
                             <script src="~/js/changeimage.js"></script>
                             *@
@@ -40,42 +40,49 @@
                                 </div>
                             </div>
                             <div class="product-detail-right-content">
-                                <div id="product-price">$ @Model.Product.UnitPrice</div>
+                                <div id="product-price">@Model.Product.UnitPrice VNĐ</div>
                                 <div id="product-status" style="font-size : 25px">
-                                    @if (Model.Product.Status == false || Model.Product.QuantityPerUnit<=0)
+                                    @if (Model.Product.Status == false || Model.Product.QuantityPerUnit <= 0)
                                     {
                                         <span style="color: red;">Hết hàng</span>
                                     }
-                                    else if (Model.Product.Status == true || Model.Product.QuantityPerUnit>0)
+                                    else if (Model.Product.Status == true || Model.Product.QuantityPerUnit > 0)
                                     {
                                         <span style="color: green;">Còn hàng</span>
                                     }
                                 </div>
-                                <div id="product-detail-buttons">
-                                  
-                                    @if (Model.Product.Status == false || Model.Product.QuantityPerUnit<=0)
+                                <div id="product-detail-buttons" class=" mb-2">
+
+                                    @if (Model.Product.Status == false || Model.Product.QuantityPerUnit <= 0)
                                     {
-                                      <div id="product-detail-button" style=" text-align:center">
-                                        <a href="#"  ><input style="background-color:#fff ; color:red;" type="button" value="Hết Hàng"></a>
-                                    </div>  
-                                    }else{
-                                    <div id="product-detail-button">
-                                        <a asp-page="/Product/Cart" asp-page-handler="buynow" asp-route-id="@Model.Product.ProductId"><input type="button" value="BUY NOW"></a>
-                                        <a asp-page="/Product/ProductDetail" asp-page-handler="addtocart" asp-route-id="@Model.Product.ProductId"><input type="button" value="ADD TO CART" style="background-color: #fff; color:red;border: 1px solid gray;"></a>
-                                    </div>
-                                     @*   </div>*@
+                                        <div id="product-detail-button" style=" text-align:center">
+                                            <a href="#"><input style="background-color:#fff ; color:red;" type="button" value="Hết Hàng"></a>
+                                        </div>
                                     }
-                                
-                                    </div>
-                               
+                                    else
+                                    {
+                                        <div id="product-detail-button">
+                                            <a asp-page="/Product/Cart" asp-page-handler="buynow" class="btn btn-success mr-2" asp-route-id="@Model.Product.ProductId">
+                                                BUY NOW
+                                            </a>
+                                            <a asp-page="/Product/ProductDetail" asp-page-handler="addtocart" asp-route-id="@Model.Product.ProductId"
+                                               class="btn btn-outline-success mr-2">
+                                                ADD TO CART
+                                            </a>
+                                        </div>
+                                        @*   </div>*@
+                                    }
+
                                 </div>
-                                <span style="color:green">@ViewData["successmess"]</span>
+
                             </div>
+                            <span class="mt-2" style="color:green">@ViewData["successmess"]</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     </div>
 </body>

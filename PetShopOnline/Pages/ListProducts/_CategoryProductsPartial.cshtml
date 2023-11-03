@@ -1,6 +1,6 @@
 ﻿@model List<PetShopOnline.Models.Product>
 
-<div class="topbar">
+<<div class="topbar">
     <!-- Mã HTML cho topbar -->
 </div>
 
@@ -16,13 +16,13 @@
                     </h4>
                     @if (product.Status == false || product.QuantityPerUnit <= 0)
                     {
-                        <p class="card-text product-price">$@product.UnitPrice</p>
+                        <p class="card-text product-price">@product.UnitPrice VNĐ</p>
                         <a href="#" style="color: red;background-color: rgba(0, 0, 0, 0.5);width:80%;" class="btn btn-primary">Hết hàng</a>
                     }
                     else
                     {
-                        <p class="card-text product-price">$@product.UnitPrice</p>
-                        <a href="/Product/ProductDetail" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                        <p class="card-text product-price">@product.UnitPrice VNĐ</p>
+                        @*<a href="/Product/ProductDetail" class="btn btn-primary">Thêm vào giỏ hàng</a>*@
                     }
                 </div>
             </div>
