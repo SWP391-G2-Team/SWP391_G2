@@ -2,6 +2,7 @@
 @model PetShopOnline.Pages.Customers.CustomersOrderDetailsModel
 @{
 }
+
 <style>
     #content-left {
         float: left;
@@ -74,7 +75,7 @@
 </style>
 <div id="page-content" class="page-content">
     <div class="banner">
-        <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://kienthucbonphuong.com/images/202006/pet-la-gi/pet-la-gi.jpg');">
+        <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://azpet.com.vn/wp-content/uploads/2021/07/Banner-Mobile-Cho-Canh.jpg');">
             <div class="container">
                 <h1 class="pt-5">
                     Sản phẩm của bạn
@@ -85,14 +86,14 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @*<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">*@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Đơn hàng của bạn</h5>
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                @*  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-                </button>
+                </button>*@
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -175,7 +176,7 @@
                                                     @orderDetail.Product.ProductName
                                                 </td>
                                                 <td class="text-right">
-                                                    $@orderDetail.UnitPrice 
+                                                    @orderDetail.UnitPrice VNĐ
                                                 </td>
                                             </tr>
                                             <tr>
@@ -195,7 +196,7 @@
                                             <strong>Tổng phụ của giỏ hàng</strong>
                                         </td>
                                         <td class="text-right">
-                                            $@Model.SumPriceSubtotal 
+                                            @Model.SumPriceSubtotal VNĐ
                                         </td>
                                     </tr>
                                     <tr>
@@ -203,7 +204,7 @@
                                             <strong>Tiền ship</strong>
                                         </td>
                                         <td class="text-right">
-                                            $@Model.Ship.Freight 
+                                            @Model.Ship.Freight VNĐ
                                         </td>
                                     </tr>
                                     <tr>
@@ -211,7 +212,7 @@
                                             <strong>Tổng giá sản phẩm</strong>
                                         </td>
                                         <td class="text-right">
-                                            <strong> $@Model.SumAllPrice </strong>
+                                            <strong> @Model.SumAllPrice VNĐ</strong>
                                         </td>
                                     </tr>
                                 </tfooter>
@@ -221,10 +222,11 @@
                 </div>
             </div>
             <div style="text-align:right; margin-right:3.5%">
+
                 @if (Model.Order.OrderStatus == "Future")
                 {
                     <form method="post" asp-page-handler="active" asp-route-OrderId="@Model.Order.OrderId">
-                        <button style="color:green" type="submit">Huỷ đơn hàng</button>
+                        <button class="btn btn-danger" type="submit">Huỷ đơn hàng</button>
                     </form>
                 }
                 else
@@ -234,7 +236,7 @@
                 @ViewData["msgEmpty"]
             </div>
             <div class="modal-footer">
-                <a href="/Customers/CustomerInfomation"> <button type="button" class="btn btn-default" data-dismiss="modal">Trở lại</button></a>
+                <a href="/Customers/CustomerInfomation" class="btn btn-secondary">Trở lại</a>
             </div>
         </div>
     </div>

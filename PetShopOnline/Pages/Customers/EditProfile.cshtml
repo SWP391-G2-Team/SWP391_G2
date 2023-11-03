@@ -2,7 +2,6 @@
 @model PetShopOnline.Pages.Customers.EditProfileModel
 @{
 }
-
 <!DOCTYPE html>
 <html>
 <script src="~/js/signup/javascript.js"></script>
@@ -16,9 +15,9 @@
 
 <body>
     <div class="banner">
-    <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://kienthucbonphuong.com/images/202006/pet-la-gi/pet-la-gi.jpg');">
+        <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://azpet.com.vn/wp-content/uploads/2021/07/Banner-Mobile-Cho-Canh.jpg');">
+        </div>
     </div>
-</div>
     <div class="main-content">
         <form class="form-basic" asp-validation-summary="All" method="post">
 
@@ -32,39 +31,40 @@
                     <input asp-for="Customer.Name" />
                 </label>
             </div>
-        <div class="form-row">
-                <label>
-                    <span>Tỉnh</span>
-                    <select id="provinceDropdown" onchange="loadDistricts()" asp-for="Customer.Province">
-                        <option value="">Chọn tỉnh</option>
-                    </select>
-                </label>
+
+            @*            <div class="form-row">
+            <label>
+            <span>Tỉnh</span>
+            <select id="provinceDropdown" onchange="loadDistricts()" asp-for="Customer.Province">
+            <option value="">Chọn tỉnh</option>
+            </select>
+            </label>
             </div>
 
             <div class="form-row">
-                <label>
-                    <span>Huyện</span>
-                    <select id="districtDropdown" onchange="loadWards()" asp-for="Customer.District">
-                        <option value="">Chọn huyện</option>
-                    </select>
-                </label>
+            <label>
+            <span>Huyện</span>
+            <select id="districtDropdown" onchange="loadWards()" asp-for="Customer.District">
+            <option value="">Chọn huyện</option>
+            </select>
+            </label>
             </div>
 
             <div class="form-row">
-                <label>
-                    <span>Xã</span>
-                    <select id="wardDropdown" asp-for="Customer.Wards">
-                        <option value="">Chọn xã</option>
-                    </select>
-                </label>
-            </div>
-             <div class="form-row">
+            <label>
+            <span>Xã</span>
+            <select id="wardDropdown" asp-for="Customer.Wards">
+            <option value="">Chọn xã</option>
+            </select>
+            </label>
+            </div>*@
+            <div class="form-row">
                 <label>
                     <span>Tỉnh</span>
                     <input asp-for="Customer.Province"></input>
                 </label>
             </div>
-             <div class="form-row">
+            <div class="form-row">
                 <label>
                     <span>Huyện/Quận</span>
                     <input asp-for="Customer.District"></input>
