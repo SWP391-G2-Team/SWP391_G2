@@ -2,16 +2,18 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PetShopOnline.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Data;
 using System.Text;
 using System.Text.Json;
+using PetShopOnline.Models;
 
 namespace PetShopOnline.Pages.Product
 {
     [Authorize(Roles = "2")]
     public class CartModel : PageModel
     {
-        private readonly  DTB_PETSHOPContext db;
+        private readonly DTB_PETSHOPContext db;
         public CartModel(DTB_PETSHOPContext db)
         {
             this.db = db;

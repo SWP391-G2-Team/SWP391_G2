@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.DotNet.Scaffolding.Shared.ProjectModel;
 using Microsoft.EntityFrameworkCore;
 using PetShopOnline.Models;
 
 namespace PetShopOnline.Pages.Customers.Blog
 {
-    public class BlogDetailModel : PageModel
+    public class ListModel : PageModel
     {
         private readonly DTB_PETSHOPContext dBContext;
         private readonly IConfiguration configuration;
-        public BlogDetailModel(DTB_PETSHOPContext dBContext)
+        public ListModel(DTB_PETSHOPContext dBContext)
         {
             this.dBContext = dBContext;
 
@@ -31,7 +32,7 @@ namespace PetShopOnline.Pages.Customers.Blog
         public @Models.Employee Employee { get; set; }
         [BindProperty]
         public List<Models.Employee> Employees { get; set; }
-        public async Task<IActionResult> OnGet(int id)
+        public async Task<IActionResult> OnGet()
         {
             /*if (HttpContext.Session.GetString("PetSession") == null)
                 return RedirectToPage("/account/singnin");
@@ -66,18 +67,6 @@ namespace PetShopOnline.Pages.Customers.Blog
                 ViewData["txtSearch"] = txtSearch;
 
                 BlogDetails = await query.Skip((int)(PageNum - 1) * PageSize).Take(PageSize).ToListAsync();*/
-            if (id == null || dBContext.BlogDetails == null)
-            {
-                return NotFound();
-            }
-
-            var blogdetail = await dBContext.BlogDetails.FirstOrDefaultAsync(m => m.BlogId == id);
-            if (blogdetail == null)
-            {
-                return NotFound();
-            }
-            BlogDetail = blogdetail;
-            return Page();
             if (dBContext.BlogDetails != null)
             {
                 BlogDetails = await dBContext.BlogDetails
@@ -110,10 +99,6 @@ namespace PetShopOnline.Pages.Customers.Blog
 
              BlogDetails = await query.Skip((int)(PageNum - 1) * PageSize).Take(PageSize).ToListAsync();*/
             return Page();
-        }
-        private bool BlogDetailExists(int id)
-        {
-            return (dBContext.BlogDetails?.Any(e => e.BlogId == id)).GetValueOrDefault();
         }
     }
 }

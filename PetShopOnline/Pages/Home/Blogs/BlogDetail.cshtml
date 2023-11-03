@@ -1,4 +1,174 @@
 ﻿@page
-@model PetShopOnline.Pages.Home.Blogs.BlogDetailModel
+@model PetShopOnline.Pages.Customers.Blogs.BlogDetailModel
 @{
+
 }
+
+<style>
+    body {
+        /*font-family: ArTimes New Roman;*/
+        line-height: 1.6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-content {
+        width: 75%; /* Occupy 75% of the screen */
+        float: left; /* Float the content to the left */
+    }
+
+    /* Add styles for the sidebar */
+    .sidebar {
+        width: 25%; /* Occupy 25% of the screen */
+        float: right; /* Float the sidebar to the right */
+        padding-left: 30px;
+    }
+
+
+    /* Main section styles */
+    .ftco-section {
+        padding: 60px 0;
+    }
+
+        /* Main heading styles */
+        .ftco-section h2 {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Paragraph styles */
+        .ftco-section p {
+            margin-bottom: 20px;
+        }
+
+    /* Images styles */
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+        padding-left: 30px;
+    }
+
+        /* Sidebar heading styles */
+        .sidebar h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Sidebar links styles */
+        .sidebar a {
+            color: #333;
+            text-decoration: none;
+        }
+
+            .sidebar a:hover {
+                color: #ff8800;
+            }
+
+    /* Comment form styles */
+    .comment-form-wrap {
+        margin-top: 50px;
+    }
+
+        .comment-form-wrap h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .comment-form-wrap .form-control {
+            margin-bottom: 20px;
+        }
+
+        .comment-form-wrap .btn-primary {
+            background-color: #ff8800;
+            color: #fff;
+        }
+
+            .comment-form-wrap .btn-primary:hover {
+                background-color: #ff6600;
+            }
+</style>
+
+    </style>
+<head>
+    <div class="jumbotron jumbotron-bg text-center rounded-0" style="background-image: url('https://i0.wp.com/thatnhucuocsong.com.vn/wp-content/uploads/2022/01/Hinh-nen-Cho-1.jpg?ssl\u003d1');  "></div>
+</head>
+<body>
+
+    <!-- END nav -->
+
+    <section class="ftco-section ftco-degree-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 ftco-animate">
+                    <h2 class="mb-3" style="font-family: ArTimes New Roman;">@Model.BlogDetail.Heading</h2>
+                    <p>@Model.BlogDetail.PublishedDate?.ToString("d MMMM yyyy")</p>
+                    <p>
+                        <img src="@Model.BlogDetail.FeaturedImageUrl" alt="" class="img-fluid">
+                    </p>
+                    <p style="font-size: 15px ; font-style:italic">@Model.BlogDetail.ShortDescription</p>
+                    <p> @Html.Raw(Model.BlogDetail.Content)</p>
+
+
+                </div>
+
+
+                <!-- .col-md-8 -->
+                <div class="col-lg-4 sidebar pl-lg-5 ftco-animate">
+                    @*<div class="sidebar-box">
+                    <form action="#" class="search-form">
+                    <div class="fa fa-search">
+                    <span  class="fa fa-search"></span>
+                    <input  type="text" class="form-control" placeholder="Type a keyword and hit enter">
+                    </div>
+                    </form>
+                    </div>*@
+
+                    <div class="sidebar-box ftco-animate">
+                        <h3>Blog Mới Nhất</h3>
+                        <div class="sidebar-box ftco-animate">
+                            @if (Model.BlogDetails != null)
+                            {
+                                @foreach (var blog in Model.BlogDetails)
+                                {
+                                    <div class="block-21 mb-4 d-flex">
+                                        <a href="/Home/Blogs/BlogDetail?id=@blog.BlogId" class="blog-img mr-4"><img src="@blog.FeaturedImageUrl" style="width:50px ; height:50px" alt="Ảnh blog"></a>
+                                        <div class="text">
+                                            <span class="heading"><a href="/Home/Blogs/BlogDetail?id=@blog.BlogId">@blog.PageTitle</a></span>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <p>No recent blogs found.</p>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <script>
+
+
+        function toggleSidebar() {
+            var sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        var sidebarToggle = document.querySelector('.sidebar-toggle');
+        sidebarToggle.addEventListener('click', toggleSidebar);
+
+    </script>
+</body>
+
