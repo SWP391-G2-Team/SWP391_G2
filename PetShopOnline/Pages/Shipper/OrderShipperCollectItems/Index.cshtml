@@ -1,31 +1,66 @@
 ﻿@page
 @model PetShopOnline.Pages.Shipper.OrderShiperTake.IndexModel
 @{
-}
-@{
     Layout = "/Pages/Shared/_LayoutShipper.cshtml";
 }
 
 <style>
-    /* CSS for DataTable */
     body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         padding: 0;
-        font-family: Arial, sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: lightblue; /* Change this line to set the background color */
+        background-color: #007BFF; /* Change the background color to light blue */
     }
+
     #orders {
         width: 100%;
         margin-top: 20px;
+        background-color: #add8e6; /* Light background color */
     }
 
     .shipped-status {
-        color: yellow;
+        color: #333333; /* Dark text color */
     }
+
+
+    h1 {
+        text-align: center;
+        color: mediumvioletred; /* Dark gray text color */
+        background-color: purple;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+        background-color: black;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+    /* Add this to your existing CSS */
+    .order-actions button {
+        margin-left: 10px;
+        padding: 8px 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #3498db; /* Change this color to your desired shade of blue */
+        color: #fff; /* Text color */
+    }
+
+        .order-actions button:hover {
+            background-color: #2980b9; /* Change this color to the shade you want on hover */
+        }
+
 </style>
 
 @section Scripts {
@@ -85,20 +120,20 @@
     </script>
 }
 
-<h1>Order List</h1>
+    <h1>Order List</h1>
 
-<table id="orders" class="display">
-    <thead>
-        <tr>
-            <th>No.</th>
-            <th>Tên sản phẩm</th>
-            <th>Địa chỉ nhận hàng</th>
-            <th>Số điện thoại liên hệ</th>
-            <th>Trạng thái</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+    <table id="orders" class="display">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Tên sản phẩm</th>
+                <th>Địa chỉ nhận hàng</th>
+                <th>Số điện thoại liên hệ</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
         @for (var i = 0; i < Model.Ships.Count; i++)
         {
             var ship = Model.Ships[i];

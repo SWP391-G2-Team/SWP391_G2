@@ -1,42 +1,13 @@
-﻿    @page
+﻿@page
 @model PetShopOnline.Pages.Shipper.OrderShipper.OrderDetailModel
 @{
 }
 <style>
     body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 0;
         padding: 0;
-        font-family: Arial, sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: lightblue; /* Change this line to set the background color */
-    }
-    #content-left {
-        float: left;
-        width: 30%;
-        padding: 20px;
-        background-color: #f7f7f7;
-    }
-
-        #content-left h3 {
-            font-weight: normal;
-        }
-
-        #content-left ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-            #content-left ul li {
-                margin-bottom: 10px;
-            }
-
-    #content-right {
-        float: right;
-        width: 70%;
-        padding: 20px;
+        background-color: #007BFF; /* Change the background color to light blue */
     }
 
     .path-admin {
@@ -59,28 +30,6 @@
         align-items: flex-start;
     }
 
-        .profile-order-title > div {
-            margin-bottom: 10px;
-        }
-
-    .profile-order-title-left {
-        font-weight: bold;
-        color: #555;
-        width: 50%;
-    }
-
-    .profile-order-title-right {
-        font-weight: bold;
-        color: #555;
-        width: 50%;
-        text-align: right;
-    }
-
-    .profile-order-status {
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
     .contener {
         display: flex;
         justify-content: space-between;
@@ -88,9 +37,10 @@
 
     .inner-order,
     .inner-shipper {
-        width: 50%;
+        width: 48%; /* Adjusted width for better alignment */
         padding: 10px;
         box-sizing: border-box;
+        margin-bottom: 20px; /* Added margin for spacing */
     }
 
     .inner-order {
@@ -138,6 +88,8 @@
                     background-color: #b3b3b3;
                 }
 </style>
+
+
 <div>
     <div class="path-admin">CHI TIẾT ORDER</b></div>
     <div class="content-main">

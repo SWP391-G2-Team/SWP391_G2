@@ -29,7 +29,7 @@ namespace PetShopOnline.Pages.Shipper.OrderShiperTake
         public async Task<IActionResult> OnGet()
         {
             if (HttpContext.Session.GetString("PetSession") == null)
-                return RedirectToPage("/account/singnin");
+                return RedirectToPage("/Account/SignIn");
 
             Account = JsonSerializer.Deserialize<Models.Account>(HttpContext.Session.GetString("PetSession"));
             Shipper = dBContext.Shippers.FirstOrDefault(c => c.ShipperId == Account.ShipperId);
